@@ -3,8 +3,8 @@ package com.concurrent.executorFramework;
 import java.util.concurrent.CyclicBarrier;
 
 class CyclicBarrierRunnable extends Thread {
-	CyclicBarrier barrier1;
-	CyclicBarrier barrier2;
+	private CyclicBarrier barrier1;
+	private CyclicBarrier barrier2;
 
 	public CyclicBarrierRunnable(CyclicBarrier barrier1, CyclicBarrier barrier2) {
 		this.barrier1 = barrier1;
