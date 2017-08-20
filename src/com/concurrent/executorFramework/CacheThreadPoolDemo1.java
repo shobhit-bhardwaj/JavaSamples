@@ -3,7 +3,7 @@ package com.concurrent.executorFramework;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class CacheThreadPoolDemo {
+public class CacheThreadPoolDemo1 {
 	public static void main(String[] args) {
 		System.out.println("Main Thread Starts.");
 

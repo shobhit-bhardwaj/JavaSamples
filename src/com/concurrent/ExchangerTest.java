@@ -1,4 +1,4 @@
-package com.concurrent.executorFramework;
+package com.concurrent;
 
 import java.util.concurrent.Exchanger;
 

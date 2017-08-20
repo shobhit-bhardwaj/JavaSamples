@@ -1,4 +1,4 @@
-package com.concurrent.executorFramework;
+package com.threads;
 
 import java.util.concurrent.TimeUnit;
 
