@@ -28,12 +28,12 @@ public class ValueReturningTask implements Runnable {
 
 		sum = a+b;
 
+		done = true;
+
 		synchronized (this) {
 			System.out.println(Thread.currentThread().getName()+" notifying Thread");
 			this.notify();
 		}
-
-		done = true;
 
 		System.out.println(Thread.currentThread().getName()+" has Done.");
 	}
