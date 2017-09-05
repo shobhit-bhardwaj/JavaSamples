@@ -3,7 +3,6 @@ package com.concurrent;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-
 class Waiter extends Thread {
 	private CountDownLatch latch;
 
