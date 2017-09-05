@@ -1,6 +1,7 @@
 package com.concurrent;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 
 class Waiter extends Thread {
@@ -15,6 +16,7 @@ class Waiter extends Thread {
 		System.out.println("Waiter await() Start");
 		try {
 			latch.await();
+			//latch.await(2, TimeUnit.SECONDS);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -34,15 +36,19 @@ class Decrementer extends Thread {
 		try {
 			Thread.sleep(1000);
 			latch.countDown();
-			System.out.println("Count Down Sleep 1");
+			System.out.println("Count Down Sleep 1, latch.getCount() - "+latch.getCount());
 
 			Thread.sleep(1000);
 			latch.countDown();
-			System.out.println("Count Down Sleep 2");
+			System.out.println("Count Down Sleep 2, latch.getCount() - "+latch.getCount());
 
 			Thread.sleep(1000);
 			latch.countDown();
-			System.out.println("Count Down Sleep 3");
+			System.out.println("Count Down Sleep 3, latch.getCount() - "+latch.getCount());
+
+			Thread.sleep(1000);
+			latch.countDown();
+			System.out.println("Count Down Sleep 4, latch.getCount() - "+latch.getCount());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -51,14 +57,13 @@ class Decrementer extends Thread {
 
 public class CountDownLatchTest {
 	public static void main(String[] args) throws Exception {
-		CountDownLatch latch = new CountDownLatch(3);
+		System.out.println("Main Thread Sleep Start");
 
+		CountDownLatch latch = new CountDownLatch(3);
 		Waiter waiter = new Waiter(latch);
 		Decrementer decrementer = new Decrementer(latch);
 		waiter.start();
 		decrementer.start();
-		System.out.println("Maid Thread Sleep Start");
-		Thread.sleep(5000);
-		System.out.println("Maid Thread Sleep End");
+		System.out.println("Main Thread Sleep End");
 	}
 }
