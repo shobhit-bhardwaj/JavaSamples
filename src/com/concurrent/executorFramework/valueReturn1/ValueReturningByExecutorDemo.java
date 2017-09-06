@@ -1,9 +1,9 @@
 package com.concurrent.executorFramework.valueReturn1;
 
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 class MyRunnable implements Runnable {
@@ -26,19 +26,21 @@ class MyRunnable implements Runnable {
 public class ValueReturningByExecutorDemo {
 	public static void main(String[] args) {
 		ExecutorService executorService = Executors.newCachedThreadPool();
-		Future<Integer> future1 = executorService.submit(new ValueReturningByExecutorTask(2, 3, 2000));
-		Future<Integer> future2 = executorService.submit(new ValueReturningByExecutorTask(3, 4, 500));
-		Future<Integer> future3 = executorService.submit(new ValueReturningByExecutorTask(4, 5, 1000));
 
-		Future<?> future4 = executorService.submit(new MyRunnable(700));
-		Future<Integer> future5 = executorService.submit(new MyRunnable(700), 200);
+		CompletionService<Integer> completionService = new ExecutorCompletionService<Integer>(executorService);
+
+		completionService.submit(new ValueReturningByExecutorTask(2, 3, 2000));
+		completionService.submit(new ValueReturningByExecutorTask(3, 4, 500));
+		completionService.submit(new ValueReturningByExecutorTask(4, 5, 1000));
+
+		//Future<?> future = executorService.submit(new MyRunnable(700));
+		completionService.submit(new MyRunnable(700), 200);
 
 		try {
-			System.out.println("Result 1 - "+future1.get());
-			System.out.println("Result 2 - "+future2.get());
-			System.out.println("Result 3 - "+future3.get());
-			System.out.println("Result 4 - "+future4.get());
-			System.out.println("Result 5 - "+future5.get());
+			//System.out.println("Future Result - "+future.get());
+			for(int i=0; i<4; i++) {
+				System.out.println("Result - "+completionService.take().get());
+			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
