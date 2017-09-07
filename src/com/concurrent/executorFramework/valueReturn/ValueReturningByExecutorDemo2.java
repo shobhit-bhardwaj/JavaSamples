@@ -1,4 +1,4 @@
-package com.concurrent.executorFramework.valueReturn1;
+package com.concurrent.executorFramework.valueReturn;
 
 import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutorCompletionService;
@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-class MyRunnable implements Runnable {
+/*class MyRunnable implements Runnable {
 	private int delay;
 
 	public MyRunnable(int delay) {
@@ -21,9 +21,9 @@ class MyRunnable implements Runnable {
 			ex.printStackTrace();
 		}
 	}
-}
+}*/
 
-public class ValueReturningByExecutorDemo {
+public class ValueReturningByExecutorDemo2 {
 	public static void main(String[] args) {
 		ExecutorService executorService = Executors.newCachedThreadPool();
 
