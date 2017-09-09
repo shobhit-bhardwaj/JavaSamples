@@ -2,12 +2,12 @@ package com.threads;
 
 import java.util.concurrent.TimeUnit;
 
-class TerminatingThreadTask implements Runnable {
+class TerminatingThreadTask1 implements Runnable {
 	private int delay;
 
 	private volatile boolean shutdown = false;
 
-	public TerminatingThreadTask(int delay) {
+	public TerminatingThreadTask1(int delay) {
 		this.delay = delay;
 	}
 
@@ -41,9 +41,9 @@ class TerminatingThreadTask implements Runnable {
 
 public class TerminatingThreadDemo1 {
 	public static void main(String[] args) {
-		TerminatingThreadTask task1 = new TerminatingThreadTask(200);
-		TerminatingThreadTask task2 = new TerminatingThreadTask(300);
-		TerminatingThreadTask task3 = new TerminatingThreadTask(500);
+		TerminatingThreadTask1 task1 = new TerminatingThreadTask1(200);
+		TerminatingThreadTask1 task2 = new TerminatingThreadTask1(300);
+		TerminatingThreadTask1 task3 = new TerminatingThreadTask1(500);
 
 		new Thread(task1, "MyThread-1").start();
 		new Thread(task2, "MyThread-2").start();
