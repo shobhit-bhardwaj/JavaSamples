@@ -13,7 +13,7 @@ class BlockingQueue {
 	}
 
 	public synchronized void enqueue(Integer element) throws InterruptedException {
-		if(queue.size() == limit) {
+		while(queue.size() == limit) {
 			wait();
 		}
 		if(queue.size() == 0) {
@@ -23,7 +23,7 @@ class BlockingQueue {
 	}
 
 	public synchronized Integer dequeue() throws InterruptedException {
-		if(queue.size() == 0) {
+		while(queue.size() == 0) {
 			wait();
 		}
 		if(queue.size() == limit) {
