@@ -1,6 +1,6 @@
 package com.dataStructure;
 
-public class LinkedListDemo {
+public class SingleLinkedListDemo {
 	private class Node {
 		private int data;
 		private Node next;
@@ -113,6 +113,6 @@ public class LinkedListDemo {
 	}
 
 	public static void main(String[] args) {
-		new LinkedListDemo().test();
+		new SingleLinkedListDemo().test();
 	}
 }
