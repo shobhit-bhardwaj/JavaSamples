@@ -1,4 +1,4 @@
-package com.dataStructure;
+package com.dataStructure.linkedList;
 
 public class SingleLinkedListDemo {
 	private class Node {
