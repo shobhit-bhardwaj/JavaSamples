@@ -21,13 +21,9 @@ public class DoublyLinkedListDemo {
 			head = node;
 			tail = head;
 		} else {
-			Node temp = head;
-			while(temp.next != null) {
-				temp = temp.next;
-			}
+			tail.next = node;
+			node.prev = tail;
 			tail = node;
-			temp.next = node;
-			node.prev = temp;
 		}
 	}
 
@@ -49,6 +45,10 @@ public class DoublyLinkedListDemo {
 				node.next = head;
 				head.prev = node;
 				head = node;
+			} else if(position == size) {
+				tail.next = node;
+				node.prev = tail;
+				tail = node;
 			} else {
 				Node temp = head;
 				for(int i=0; i<position-1; i++) {
@@ -57,10 +57,7 @@ public class DoublyLinkedListDemo {
 				node.next = temp.next;
 				temp.next = node;
 				node.prev = temp;
-				if(position == size)
-					tail = node;
-				else
-					node.next.prev = node;
+				node.next.prev = node;
 			}
 		}
 	}
@@ -70,22 +67,22 @@ public class DoublyLinkedListDemo {
 			position = 0;
 
 		int size = size();
-		if(position >= size)
-			position = size-1;
+		if(position > size)
+			position = size;
 
 		if(position == 0) {
 			head = head.next;
 			head.prev = null;
+		} else if(position == size) {
+			tail = tail.prev;
+			tail.next = null;
 		} else {
 			Node temp = head;
 			for(int i=0; i<position-1; i++) {
 				temp = temp.next;
 			}
 			temp.next = temp.next.next;
-			if(position == size-1)
-				tail = temp;
-			else
-				temp.next.prev = temp;
+			temp.next.prev = temp;
 		}
 	}
 
