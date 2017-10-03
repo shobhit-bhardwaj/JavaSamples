@@ -58,11 +58,17 @@ public class SingleLinkedListDemo {
 			position = 0;
 
 		int size = size();
-		if(position >= size)
-			position = size-1;
+		if(position > size)
+			position = size;
 
 		if(position == 0) {
 			head = head.next;
+		} else if(position == size) {
+			Node temp = head;
+			while(temp.next.next != null) {
+				temp = temp.next;
+			}
+			temp.next = null;
 		} else {
 			Node temp = head;
 			for(int i=0; i<position-1; i++) {
