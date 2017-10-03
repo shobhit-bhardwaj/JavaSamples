@@ -26,23 +26,21 @@ public class ArrayStackDemo {
 	public boolean push(int data) {
 		if(top == capecity-1)
 			return false;
-		else {
-			stack[++top] = data;
-			size++;
-			return true;
-		}
+
+		stack[++top] = data;
+		size++;
+		return true;
 	}
 
 	public int pop() {
 		if(size == 0)
 			return -1;
-		else {
-			int data = stack[top];
-			stack[top] = Integer.MIN_VALUE;
-			top--;
-			size--;
-			return data;
-		}
+
+		int data = stack[top];
+		stack[top] = Integer.MIN_VALUE;
+		top--;
+		size--;
+		return data;
 	}
 
 	public void traverse() {
