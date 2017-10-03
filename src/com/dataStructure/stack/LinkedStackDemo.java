@@ -10,14 +10,12 @@ public class LinkedStackDemo {
 		}
 	}
 
-	private Node head;
 	private Node top;
 
 	public boolean push(int data) {
 		Node node = new Node(data);
 
-		if(head == null) {
-			head = node;
+		if(top == null) {
 			top = node;
 		} else {
 			node.next = top;
