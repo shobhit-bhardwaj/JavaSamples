@@ -11,37 +11,41 @@ public class SingleLinkedListDemo {
 	}
 
 	private Node head;
+	private Node tail;
+	private int size;
 
 	public void insertData(int data) {
 		Node node = new Node(data);
 
-		if(head == null)
+		if(head == null) {
 			head = node;
-		else {
-			Node temp = head;
-			while(temp.next != null) {
-				temp = temp.next;
-			}
-			temp.next = node;
+			tail = node;
+		} else {
+			tail.next = node;
+			tail = node;
 		}
+
+		size++;
 	}
 
 	public void insertData(int data, int position) {
 		if(position < 0)
 			position = 0;
-
-		int size = size();
 		if(position > size)
 			position = size;
 
 		Node node = new Node(data);
 
-		if(head == null)
+		if(head == null) {
 			head = node;
-		else {
+			tail = node;
+		} else {
 			if(position == 0) {
 				node.next = head;
 				head = node;
+			} else if(position == size) {
+				tail.next = node;
+				tail = node;
 			} else {
 				Node temp = head;
 				for(int i=0; i<position-1; i++) {
@@ -51,13 +55,13 @@ public class SingleLinkedListDemo {
 				temp.next = node;
 			}
 		}
+
+		size++;
 	}
 
 	public void deleteData(int position) {
 		if(position < 0)
 			position = 0;
-
-		int size = size();
 		if(position > size)
 			position = size;
 
@@ -65,10 +69,11 @@ public class SingleLinkedListDemo {
 			head = head.next;
 		} else if(position == size) {
 			Node temp = head;
-			while(temp.next.next != null) {
+			while(temp.next != tail) {
 				temp = temp.next;
 			}
 			temp.next = null;
+			tail = temp;
 		} else {
 			Node temp = head;
 			for(int i=0; i<position-1; i++) {
@@ -76,6 +81,8 @@ public class SingleLinkedListDemo {
 			}
 			temp.next = temp.next.next;
 		}
+
+		size--;
 	}
 
 	public void traverse() {
@@ -85,18 +92,6 @@ public class SingleLinkedListDemo {
 			temp = temp.next;
 		}
 		System.out.println();
-	}
-
-	public int size() {
-		int count = 0;
-
-		Node temp = head;
-		while(temp != null) {
-			count++;
-			temp = temp.next;
-		}
-
-		return count;
 	}
 
 	public void test() {
@@ -109,13 +104,13 @@ public class SingleLinkedListDemo {
 		insertData(70, 4);
 		insertData(80, 9);
 		traverse();
-		System.out.println("Size - "+size());
+		System.out.println("Size - "+size);
 
 		deleteData(4);
 		deleteData(0);
 		deleteData(9);
 		traverse();
-		System.out.println("Size - "+size());
+		System.out.println("Size - "+size);
 	}
 
 	public static void main(String[] args) {
