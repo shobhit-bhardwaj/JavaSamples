@@ -32,7 +32,7 @@ public class CirculerLinkedListDemo {
 	public void insertData(int data, int position) {
 		if(position < 0)
 			position = 0;
-		if(position > size)
+		else if(position > size)
 			position = size;
 
 		Node node = new Node(data);
@@ -65,7 +65,7 @@ public class CirculerLinkedListDemo {
 	public void deleteData(int position) {
 		if(position < 0)
 			position = 0;
-		if(position > size)
+		else if(position > size)
 			position = size;
 
 		if(position == 0) {
@@ -87,6 +87,25 @@ public class CirculerLinkedListDemo {
 		}
 
 		size--;
+	}
+
+	public void updateData(int position, int data) {
+		if(position < 0)
+			position = 0;
+		else if(position > size)
+			position = size;
+
+		if(position == 0)
+			head.data = data;
+		else if(position == size)
+			tail.data = data;
+		else {
+			Node temp = head;
+			for(int i=0; i<position; i++) {
+				temp = temp.next;
+			}
+			temp.data = data;
+		}
 	}
 
 	public void traverse() {
@@ -114,6 +133,12 @@ public class CirculerLinkedListDemo {
 		deleteData(4);
 		deleteData(0);
 		deleteData(9);
+		traverse();
+		System.out.println("Size - "+size);
+
+		updateData(2, 15);
+		updateData(0, 25);
+		updateData(9, 35);
 		traverse();
 		System.out.println("Size - "+size);
 	}
