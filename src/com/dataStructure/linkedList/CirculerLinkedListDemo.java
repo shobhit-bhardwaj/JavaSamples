@@ -12,6 +12,7 @@ public class CirculerLinkedListDemo {
 
 	private Node head;
 	private Node tail;
+	private int size;
 
 	public void insertData(int data) {
 		Node node = new Node(data);
@@ -24,13 +25,13 @@ public class CirculerLinkedListDemo {
 			node.next = head;
 			tail = node;
 		}
+
+		size++;
 	}
 
 	public void insertData(int data, int position) {
 		if(position < 0)
 			position = 0;
-
-		int size = size();
 		if(position > size)
 			position = size;
 
@@ -57,13 +58,13 @@ public class CirculerLinkedListDemo {
 				temp.next = node;
 			}
 		}
+
+		size++;
 	}
 
 	public void deleteData(int position) {
 		if(position < 0)
 			position = 0;
-
-		int size = size();
 		if(position > size)
 			position = size;
 
@@ -84,6 +85,8 @@ public class CirculerLinkedListDemo {
 			}
 			temp.next = temp.next.next;
 		}
+
+		size--;
 	}
 
 	public void traverse() {
@@ -96,18 +99,6 @@ public class CirculerLinkedListDemo {
 		System.out.println();
 	}
 
-	public int size() {
-		int count = 0;
-
-		Node temp = head;
-		do {
-			count++;
-			temp = temp.next;
-		} while(temp != head);
-
-		return count;
-	}
-
 	public void test() {
 		insertData(10);
 		insertData(20);
@@ -118,13 +109,13 @@ public class CirculerLinkedListDemo {
 		insertData(70, 4);
 		insertData(80, 9);
 		traverse();
-		System.out.println("Size - "+size());
+		System.out.println("Size - "+size);
 
 		deleteData(4);
 		deleteData(0);
 		deleteData(9);
 		traverse();
-		System.out.println("Size - "+size());
+		System.out.println("Size - "+size);
 	}
 
 	public static void main(String[] args) {
