@@ -13,6 +13,7 @@ public class DoublyLinkedListDemo {
 
 	private Node head;
 	private Node tail;
+	private int size;
 
 	public void insertData(int data) {
 		Node node = new Node(data);
@@ -25,13 +26,13 @@ public class DoublyLinkedListDemo {
 			node.prev = tail;
 			tail = node;
 		}
+
+		size++;
 	}
 
 	public void insertData(int data, int position) {
 		if(position < 0)
 			position = 0;
-
-		int size = size();
 		if(position > size)
 			position = size;
 
@@ -60,13 +61,13 @@ public class DoublyLinkedListDemo {
 				node.next.prev = node;
 			}
 		}
+
+		size++;
 	}
 
 	public void deleteData(int position) {
 		if(position < 0)
 			position = 0;
-
-		int size = size();
 		if(position > size)
 			position = size;
 
@@ -84,6 +85,8 @@ public class DoublyLinkedListDemo {
 			temp.next = temp.next.next;
 			temp.next.prev = temp;
 		}
+
+		size--;
 	}
 
 	public void traverse(boolean forward) {
@@ -104,18 +107,6 @@ public class DoublyLinkedListDemo {
 		System.out.println();
 	}
 
-	public int size() {
-		int count = 0;
-
-		Node temp = head;
-		while(temp != null) {
-			count++;
-			temp = temp.next;
-		}
-
-		return count;
-	}
-
 	public void test() {
 		insertData(10);
 		insertData(20);
@@ -127,14 +118,14 @@ public class DoublyLinkedListDemo {
 		insertData(80, 9);
 		traverse(true);
 		traverse(false);
-		System.out.println("Size - "+size());
+		System.out.println("Size - "+size);
 
 		deleteData(4);
 		deleteData(0);
 		deleteData(9);
 		traverse(true);
 		traverse(false);
-		System.out.println("Size - "+size());
+		System.out.println("Size - "+size);
 	}
 
 	public static void main(String[] args) {
