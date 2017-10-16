@@ -36,6 +36,7 @@ public class LinkedListDemo {
 	public void traverse() {
 		for(Node temp=head; temp!=null; temp=temp.next)
 			System.out.print(temp.data+"\t");
+		System.out.println();
 	}
 
 	public void test() {
