@@ -4,7 +4,7 @@ import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
 
 public class MiddleInLinkedList {
 	public Node middleNode(Node node) {
-		Node temp1=node;
+		Node temp1 = node;
 		Node temp2 = node;
 		while(temp2 != null && temp2.next != null) {
 			temp2 = temp2.next.next;
