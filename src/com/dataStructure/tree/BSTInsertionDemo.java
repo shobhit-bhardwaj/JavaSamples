@@ -21,6 +21,11 @@ public class BSTInsertionDemo {
 		public Node getRight() {
 			return right;
 		}
+
+		@Override
+		public String toString() {
+			return "Node [data=" + data + ", left=" + left + ", right=" + right + "]";
+		}
 	}
 
 	private Node root;
