@@ -17,6 +17,10 @@ public class LinkedListDemo {
 
 	private Node head;
 
+	public Node createNode(int data) {
+		return new Node(data);
+	}
+
 	public Node getHead() {
 		return head;
 	}
@@ -35,6 +39,12 @@ public class LinkedListDemo {
 
 	public void traverse() {
 		for(Node temp=head; temp!=null; temp=temp.next)
+			System.out.print(temp.data+"\t");
+		System.out.println();
+	}
+
+	public void traverse(Node node) {
+		for(Node temp=node; temp!=null; temp=temp.next)
 			System.out.print(temp.data+"\t");
 		System.out.println();
 	}
