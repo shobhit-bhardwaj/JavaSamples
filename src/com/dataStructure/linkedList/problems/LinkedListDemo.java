@@ -17,9 +17,17 @@ public class LinkedListDemo {
 			return next;
 		}
 
+		@Override
+		public String toString() {
+			return "Node [data=" + data + ", next=" + next + "]";
+		}
 	}
 
 	private Node head;
+
+	public Node getHead() {
+		return head;
+	}
 
 	public void insertData(int data) {
 		Node node = new Node(data);
