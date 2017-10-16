@@ -5,8 +5,8 @@ import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
 public class SearchInLinkedList {
 	public Node searchDataIterative(Node node, int key) {
 		Node temp;
-		for(temp=node; temp.getNext()!=null; temp=temp.getNext()) {
-			if(temp.getData() == key)
+		for(temp=node; temp.next!=null; temp=temp.next) {
+			if(temp.data == key)
 				return temp;
 		}
 
@@ -17,10 +17,10 @@ public class SearchInLinkedList {
 		if(node == null)
 			return null;
 
-		if(node.getData() == key)
+		if(node.data == key)
 			return node;
 		else
-			return searchDataRecursive(node.getNext(), key);
+			return searchDataRecursive(node.next, key);
 	}
 
 	public static void main(String[] args) {
