@@ -2,19 +2,11 @@ package com.dataStructure.linkedList.problems;
 
 public class LinkedListDemo {
 	public class Node {
-		private int data;
-		private Node next;
+		public int data;
+		public Node next;
 
 		public Node(int data) {
 			this.data = data;
-		}
-
-		public int getData() {
-			return data;
-		}
-
-		public Node getNext() {
-			return next;
 		}
 
 		@Override
