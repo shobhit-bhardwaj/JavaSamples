@@ -9,7 +9,7 @@ public class RotateLinkedList {
 		int counter = 1;
 		Node current = head;
 		Node prev = null;
-		while(current.next != null) {
+		while(current != null) {
 			if(counter == k) {
 				newHead = current;
 				prev.next = null;
@@ -18,7 +18,7 @@ public class RotateLinkedList {
 			prev = current;
 			current = current.next;
 		}
-		current.next = head;
+		prev.next = head;
 		head = newHead;
 
 		return head;
