@@ -2,7 +2,7 @@ package com.dataStructure.linkedList.problems;
 
 import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
 
-public class ReverseLinkedListRecursive {
+public class PrintReverseRecursiveLinkedList {
 	public void printReverseRecursive(Node node) {
 		if(node == null)
 			return;
@@ -21,7 +21,7 @@ public class ReverseLinkedListRecursive {
 		linkedList.insertData(50);
 
 		Node head = linkedList.getHead();
-		ReverseLinkedListRecursive reverse = new ReverseLinkedListRecursive();
-		reverse.printReverseRecursive(head);
+		PrintReverseRecursiveLinkedList printReverse = new PrintReverseRecursiveLinkedList();
+		printReverse.printReverseRecursive(head);
 	}
 }
