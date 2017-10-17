@@ -3,15 +3,15 @@ package com.dataStructure.linkedList.problems;
 import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
 
 public class MoveLastElementToFirst {
-	public void moveLastToFirst(Node node) {
+	public Node moveLastToFirst(Node node) {
 		Node head = node;
-		while(node != null)
+		while(node.next.next != null)
 			node = node.next;
-		Node temp1 = head;
-		Node temp2 = node;
-		head = node;
-		head.next = temp1.next;
-		
+		Node last = node.next;
+		node.next = null;
+		last.next = head;
+		head = last;
+		return head;
 	}
 
 	public static void main(String[] args) {
@@ -24,7 +24,7 @@ public class MoveLastElementToFirst {
 
 		Node head = linkedList.getHead();
 		MoveLastElementToFirst move = new MoveLastElementToFirst();
-		move.moveLastToFirst(head);
+		head = move.moveLastToFirst(head);
 		linkedList.traverse(head);
 	}
 }
