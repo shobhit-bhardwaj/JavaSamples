@@ -26,7 +26,10 @@ public class SegregateEvenOddNodeLinkedList {
 			prev = current;
 			current = current.next;
 		}
-		prev.next = odd;
+		Node temp = head;
+		while(temp.next != null)
+			temp = temp.next;
+		temp.next = odd;
 
 		return head;
 	}
