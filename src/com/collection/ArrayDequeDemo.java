@@ -1,7 +1,6 @@
 package com.collection;
 
 import java.util.ArrayDeque;
-import java.util.PriorityQueue;
 
 public class ArrayDequeDemo {
 	static class Employ {
