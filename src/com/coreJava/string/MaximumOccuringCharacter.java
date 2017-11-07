@@ -1,4 +1,4 @@
-package com.string;
+package com.coreJava.string;
 
 public class MaximumOccuringCharacter {
 	public static void main(String[] args) {
