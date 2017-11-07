@@ -1,4 +1,4 @@
-package com.miscellaneous;
+package com.coreJava.miscellaneous;
 
 import java.util.ArrayList;
 import java.util.List;
