@@ -46,7 +46,7 @@ public class DateTimeAPI {
 		LocalTime time2 = LocalTime.now().plus(17, ChronoUnit.MINUTES);
 		System.out.println(Duration.between(time1, time2));
 
-		//	Temporal Adjusters
+		//	Temporal Adjuster
 		date = LocalDate.now();
 		LocalDate nextDate = date.with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
 		System.out.println(nextDate);
