@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Java8Streams {
 	public static void main(String[] args) {
 		final List<String> stringList = Arrays.asList("AAA", "", "BB", "CCCC", "", "DDD", "EEEEE");
-		final List<Integer> integerList = Arrays.asList(1, 2, 3, 2, 4, 3, 5);
+		final List<Integer> integerList = Arrays.asList(1, 2, 3, 2, 4, 3, 5, 6, 7);
 
 		long count = stringList.stream().filter(s -> s.isEmpty()).count();
 		System.out.println("Empty String Count - "+count);
