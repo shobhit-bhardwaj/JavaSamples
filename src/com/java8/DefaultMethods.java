@@ -32,7 +32,7 @@ public class DefaultMethods implements Cube, Circle {
 
 	@Override
 	public void print() {
-		System.out.println("Default Method.");
+		System.out.println("Default Method");
 	}
 
 	public static void main(String[] args) {
