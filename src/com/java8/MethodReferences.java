@@ -55,7 +55,7 @@ public class MethodReferences {
 		persons.forEach(new Person() :: printNonStatic);
 		persons.forEach(Person :: printStatic);
 
-		persons.forEach(person -> {System.out.println("Lambda Express - "+person.getId()+" - "+person.getName()); });
+		persons.forEach(person -> {System.out.println("Lambda Expression - "+person.getId()+" - "+person.getName()); });
 		persons.forEach(new Consumer<Person>() {
 			@Override
 			public void accept(Person person) {
