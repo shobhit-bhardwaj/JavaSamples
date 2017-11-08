@@ -25,7 +25,7 @@ public class LambdaExpression {
 		int c = process((a, b) -> {return a*a+b*b;}, 5, 10);
 		System.out.println(c);
 
-		GreetService service = (name) -> {String greet = "Hello "; greet += name; return greet;};
+		GreetService service = (name) -> { String greet = "Hello "; greet += name; return greet; };
 		System.out.println(service.sayHello("Shobhit"));
 
 		Runnable r1 = () -> {
