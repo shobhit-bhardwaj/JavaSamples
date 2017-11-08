@@ -15,7 +15,7 @@ public class FunctionalInterface {
 
 		List<String> stringList = Arrays.asList("A", "B", "C", "D", "E");
 		evalString(stringList, x -> "A".equals(x));
-		Predicate<String> predicate = (x) -> {String s = x.toLowerCase(); return s.equals("b"); };
+		Predicate<String> predicate = (x) -> { String s = x.toLowerCase(); return s.equals("b"); };
 		evalString(stringList, predicate);
 	}
 
