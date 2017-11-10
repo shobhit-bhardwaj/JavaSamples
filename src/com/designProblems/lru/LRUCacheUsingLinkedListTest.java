@@ -56,7 +56,7 @@ class LRUList {
 	}
 }
 
-public class LRUCacheWithLinkedListTest {
+public class LRUCacheUsingLinkedListTest {
 	public static void main(String[] args) {
 		LRUList lru = new LRUList(3);
 		lru.set(10);
