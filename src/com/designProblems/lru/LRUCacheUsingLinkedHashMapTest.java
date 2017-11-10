@@ -1,4 +1,4 @@
-package com.coreJava;
+package com.designProblems.lru;
 
 import java.util.LinkedHashMap;
 
