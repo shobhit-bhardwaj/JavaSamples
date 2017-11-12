@@ -2,11 +2,16 @@ package com.designPattern.structural.decorator;
 
 public class TestDecorator {
 	public static void main(String[] args) {
-		Car sportsCar = new SportsCar(new BasicCar());
-		sportsCar.assemble();
-		System.out.println();
+		Currency rupees = new Rupees();
+		System.out.println(rupees.getDescription());
 
-		Car luxuryCar = new LuxuryCar(new BasicCar());
-		luxuryCar.assemble();
+		Currency doller = new Doller();
+		System.out.println(doller.getDescription());
+
+		USDDecorator usDoller = new USDDecorator(doller);
+		System.out.println(usDoller.getDescription());
+
+		AUSDecorator ausDoller = new AUSDecorator(doller);
+		System.out.println(ausDoller.getDescription());
 	}
 }
