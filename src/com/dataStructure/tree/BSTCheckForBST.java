@@ -6,7 +6,7 @@ public class BSTCheckForBST {
 	public boolean checkForBST(Node node, int min, int max) {
 		if(node == null)
 			return true;
-		if(node.getData() < min || node.getData() > max)
+		if(node.getData() <= min || node.getData() >= max)
 			return false;
 
 		return checkForBST(node.getLeft(), min, node.getData()) && checkForBST(node.getRight(), node.getData(), max);
