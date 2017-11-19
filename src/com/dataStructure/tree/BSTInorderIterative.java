@@ -10,7 +10,6 @@ public class BSTInorderIterative {
 			return;
 
 		Stack<Node> stack = new Stack<>();
-		stack.push(root);
 		while(true) {
 			if(root != null) {
 				stack.push(root);
