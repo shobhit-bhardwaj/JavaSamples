@@ -7,7 +7,7 @@ import com.dataStructure.tree.BSTInsertionDemo;
 import com.dataStructure.tree.BSTInsertionDemo.Node;
 
 public class VerticalSumBST {
-	Map<Integer, Integer> map = new HashMap<>();
+	private Map<Integer, Integer> map = new HashMap<>();
 
 	public void printVerticalSum(Node root, int order) {
 		if(root == null)
