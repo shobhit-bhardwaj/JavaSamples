@@ -5,7 +5,7 @@ import com.dataStructure.tree.BSTInsertionDemo.Node;
 
 public class MaxElementRecursiveBST {
 	public int maxInBST(Node root) {
-		if(root ==  null)
+		if(root == null)
 			return -1;
 
 		int maxValue = Integer.MIN_VALUE;
