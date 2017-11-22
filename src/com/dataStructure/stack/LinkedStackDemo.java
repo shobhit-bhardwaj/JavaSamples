@@ -1,7 +1,7 @@
 package com.dataStructure.stack;
 
 public class LinkedStackDemo {
-	private class Node {
+	public class Node {
 		private int data;
 		private Node next;
 
@@ -11,6 +11,10 @@ public class LinkedStackDemo {
 	}
 
 	private Node top;
+
+	public Node getTop() {
+		return top;
+	}
 
 	public boolean push(int data) {
 		Node node = new Node(data);
@@ -36,6 +40,15 @@ public class LinkedStackDemo {
 
 	public void traverse() {
 		Node temp = top;
+		while(temp != null) {
+			System.out.print(temp.data+"\t");
+			temp = temp.next;
+		}
+		System.out.println();
+	}
+
+	public void traverse(Node node) {
+		Node temp = node;
 		while(temp != null) {
 			System.out.print(temp.data+"\t");
 			temp = temp.next;
