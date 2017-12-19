@@ -1,24 +1,38 @@
 package com.dataStructure.stack.problems;
 
-import com.dataStructure.stack.LinkedStackDemo;
-import com.dataStructure.stack.LinkedStackDemo.Node;
+import java.util.Stack;
 
 public class ReverseStackRecursive {
-	public Node reverseRecursive(Node top) {
-		return top;
+	private static Stack<Integer> stack = new Stack<>();
+
+	public void reverseRecursive() {
+		if(stack.size() > 0) {
+			int data = stack.pop();
+			reverseRecursive();
+			insertAtBottom(data);
+		}
+	}
+
+	private void insertAtBottom(int data) {
+		if(stack.isEmpty())
+			stack.push(data);
+		else {
+			int a = stack.peek();
+			stack.pop();
+			insertAtBottom(data);
+			stack.push(a);
+		}
 	}
 
 	public static void main(String[] args) {
-		LinkedStackDemo stack = new LinkedStackDemo();
 		stack.push(10);
 		stack.push(20);
 		stack.push(30);
 		stack.push(40);
 		stack.push(50);
-		stack.traverse();
-		Node top = stack.getTop();
+		System.out.println(stack);
 
-		Node newTop = new ReverseStackRecursive().reverseRecursive(top);
-		stack.traverse(newTop);
+		new ReverseStackRecursive().reverseRecursive();
+		System.out.println(stack);
 	}
 }
