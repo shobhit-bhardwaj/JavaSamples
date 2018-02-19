@@ -26,7 +26,6 @@ public class MaximumSubArraySum {
 	public static void main(String[] args) {
 		int[] array = new int[]{2, -9, 5, 1, -4, 6, 0, -7, 8};
 		//	int[] array = new int[]{-1, -2, -3, -8, -4};
-		int k = 3;
 
 		System.out.print("Initial Array -\t");
 		for(int a : array)
