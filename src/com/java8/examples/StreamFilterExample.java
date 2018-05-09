@@ -32,12 +32,12 @@ public class StreamFilterExample {
 
 		//	Find Element According to Filter Condition
 		List<Employ> employs = Arrays.asList(
-				new Employ(102, "Shobhit"),
-				new Employ(101, "Ravi"),
+				new Employ(101, "Shobhit"),
+				new Employ(102, "Ravi"),
 				new Employ(103, "Rajesh"));
 
 		Employ employResult = employs.stream()
-				.filter(employ -> 102 == employ.id && "Shobhit".equals(employ.name))
+				.filter(employ -> 101 == employ.id && "Shobhit".equals(employ.name))
 				.findAny()
 				.orElse(null);
 		System.out.println("Employ Result - "+employResult);
