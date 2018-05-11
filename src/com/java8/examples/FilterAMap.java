@@ -33,7 +33,7 @@ public class FilterAMap {
 		String likedFruit = getFruit(fruitMap, value -> "Banana".equals(value));
 		System.out.println("Liked Fruit - "+likedFruit);
 
-		likedFruit = getFruit(fruitMap, value -> "Ornge".equals(value));
+		likedFruit = getFruit(fruitMap, value -> "Orange".equals(value));
 		System.out.println("Liked Fruit - "+likedFruit);
 	}
 
