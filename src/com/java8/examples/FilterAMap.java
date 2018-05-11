@@ -29,7 +29,7 @@ public class FilterAMap {
 		System.out.println("Short Map - "+shortMap);
 		System.out.println();
 
-		//	Using Predicate
+		//	Using Functional Method Predicate
 		String likedFruit = getFruit(fruitMap, value -> "Banana".equals(value));
 		System.out.println("Liked Fruit - "+likedFruit);
 
