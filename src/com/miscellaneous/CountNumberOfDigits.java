@@ -1,4 +1,4 @@
-package com.coreJava.miscellaneous;
+package com.miscellaneous;
 
 public class CountNumberOfDigits {
 	public static void main(String[] args) {

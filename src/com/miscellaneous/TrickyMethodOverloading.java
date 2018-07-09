@@ -1,4 +1,4 @@
-package com.coreJava.miscellaneous;
+package com.miscellaneous;
 
 public class TrickyMethodOverloading {
 	public void testMethod(Object object) {

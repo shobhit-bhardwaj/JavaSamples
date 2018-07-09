@@ -1,4 +1,4 @@
-package com.coreJava.miscellaneous;
+package com.miscellaneous;
 
 import java.util.stream.IntStream;
 

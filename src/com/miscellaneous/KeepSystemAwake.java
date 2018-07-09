@@ -1,4 +1,4 @@
-package com.coreJava.miscellaneous;
+package com.miscellaneous;
 
 import java.awt.Robot;
 import java.util.Random;

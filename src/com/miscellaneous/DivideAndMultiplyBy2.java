@@ -1,4 +1,4 @@
-package com.coreJava.miscellaneous;
+package com.miscellaneous;
 
 public class DivideAndMultiplyBy2 {
 	public static void main(String[] args) {
