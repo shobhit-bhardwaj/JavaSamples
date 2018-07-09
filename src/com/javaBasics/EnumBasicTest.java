@@ -1,4 +1,4 @@
-package com.coreJava;
+package com.javaBasics;
 
 enum Direction {
 	EAST {
