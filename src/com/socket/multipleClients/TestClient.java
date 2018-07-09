@@ -1,4 +1,4 @@
-package com.coreJava.socket.multipleClients;
+package com.socket.multipleClients;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
