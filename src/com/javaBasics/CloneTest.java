@@ -1,4 +1,4 @@
-package com.coreJava;
+package com.javaBasics;
 
 class Department implements Cloneable {
 	private String departmentName;
