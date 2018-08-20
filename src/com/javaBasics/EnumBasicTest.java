@@ -1,36 +1,32 @@
 package com.javaBasics;
 
-enum Direction {
-	EAST {
-		@Override
-		public void display() {
-			System.out.println("East");
-		}
-	},
-	WEST {
-		@Override
-		public void display() {
-			System.out.println("West");
-		}
-	},
-	NORTH {
-		@Override
-		public void display() {
-			System.out.println("North");
-		}
-	},
-	SOUTH {
-		@Override
-		public void display() {
-			System.out.println("South");
-		}
-	};
+import java.util.Arrays;
+import java.util.EnumSet;
 
-	public abstract void display();
+enum Days {
+	SUNDAY ("Sunday"),
+	MONDAY ("Monday"),
+	TUESDAY ("Tuesday"),
+	WEDNESDAY ("Wednesday"),
+	THURSDAY ("Thursday"),
+	FRIDAY ("Friday"),
+	SATURDAY ("Saturday");
+
+	String name;
+
+	private Days(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
 }
 
 public class EnumBasicTest {
 	public static void main(String[] args) {
-		Direction.EAST.display();
+		EnumSet.allOf(Days.class).forEach(day -> System.out.print(day.getName() + "\t"));
+
+		Arrays.asList(Days.values()).forEach(System.out :: println);
 	}
 }
