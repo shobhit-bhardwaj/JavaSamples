@@ -1,4 +1,4 @@
-package com.miscellaneous;
+package com.collection.problems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
