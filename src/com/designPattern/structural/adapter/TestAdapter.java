@@ -2,32 +2,11 @@ package com.designPattern.structural.adapter;
 
 public class TestAdapter {
 	public static void main(String[] args) {
-		testClassAdapter();
+		OldCustomer oldCustomer = new OldCustomer("Shobhit Bhardwaj", "30", "212 XYZ, Gurgaon, Haryana");
+		System.out.println(oldCustomer);
 
-		System.out.println();
+		NewCustomer newCustomer = new CustomerAdapter(oldCustomer);
 
-		testObjectAdapter();
-	}
-
-	public static void testClassAdapter() {
-		SocketAdapter adapter = new SocketAdapterClassImpl();
-		Volt v3 = adapter.get3Volt();
-		Volt v12 = adapter.get12Volt();
-		Volt v120 = adapter.get120Volt();
-
-		System.out.println("testClassAdapter Volt 3 - "+v3.getVolts());
-		System.out.println("testClassAdapter Volt 12 - "+v12.getVolts());
-		System.out.println("testClassAdapter Volt 120 - "+v120.getVolts());
-	}
-
-	public static void testObjectAdapter() {
-		SocketAdapter adapter = new SocketAdapterObjectImpl();
-		Volt v3 = adapter.get3Volt();
-		Volt v12 = adapter.get12Volt();
-		Volt v120 = adapter.get120Volt();
-
-		System.out.println("testClassAdapter Volt 3 - "+v3.getVolts());
-		System.out.println("testClassAdapter Volt 12 - "+v12.getVolts());
-		System.out.println("testClassAdapter Volt 120 - "+v120.getVolts());
+		System.out.println(newCustomer);
 	}
 }
