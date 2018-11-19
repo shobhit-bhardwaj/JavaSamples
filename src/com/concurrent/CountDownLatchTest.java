@@ -3,51 +3,42 @@ package com.concurrent;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-class Waiter extends Thread {
-	private CountDownLatch latch;
+class WorkerThread extends Thread {
+	private String activityName;
+	private CountDownLatch activityLatch;
 
-	public Waiter(CountDownLatch latch) {
-		this.latch = latch;
+	public WorkerThread(String activityName, CountDownLatch activityLatch) {
+		this.activityName = activityName;
+		this.activityLatch = activityLatch;
 	}
 
 	@Override
 	public void run() {
-		System.out.println("Waiter await() Start");
 		try {
-			latch.await();
-			//latch.await(2, TimeUnit.SECONDS);
+			activityLatch.countDown();
+			System.out.println("Waiting for Worker (" + activityName + "). Currently We Have Remaining - " + activityLatch.getCount());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		System.out.println("Waiter await() End");
 	}
 }
 
-class Decrementer extends Thread {
-	private CountDownLatch latch;
+class WorkActivity extends Thread {
+	private String activityName;
+	private CountDownLatch activityLatch;
 
-	public Decrementer(CountDownLatch latch) {
-		this.latch = latch;
+	public WorkActivity(String activityName, CountDownLatch activityLatch) {
+		this.activityName = activityName;
+		this.activityLatch = activityLatch;
 	}
 
 	@Override
 	public void run() {
 		try {
-			Thread.sleep(1000);
-			latch.countDown();
-			System.out.println("Count Down Sleep 1, latch.getCount() - "+latch.getCount());
-
-			Thread.sleep(1000);
-			latch.countDown();
-			System.out.println("Count Down Sleep 2, latch.getCount() - "+latch.getCount());
-
-			Thread.sleep(1000);
-			latch.countDown();
-			System.out.println("Count Down Sleep 3, latch.getCount() - "+latch.getCount());
-
-			Thread.sleep(1000);
-			latch.countDown();
-			System.out.println("Count Down Sleep 4, latch.getCount() - "+latch.getCount());
+			System.out.println("Waiting for Workers, Activity - " + this.activityName);
+			activityLatch.await();
+			//activityLatch.await(1, TimeUnit.SECONDS);
+			System.out.println("Starting Activity - " + this.activityName);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -56,13 +47,16 @@ class Decrementer extends Thread {
 
 public class CountDownLatchTest {
 	public static void main(String[] args) throws Exception {
-		System.out.println("Main Thread Sleep Start");
+		String activityName = "Lifting Boxes";
+		CountDownLatch activityLatch = new CountDownLatch(5);
+		WorkActivity lifting = new WorkActivity(activityName, activityLatch);
+		lifting.start();
 
-		CountDownLatch latch = new CountDownLatch(3);
-		Waiter waiter = new Waiter(latch);
-		Decrementer decrementer = new Decrementer(latch);
-		waiter.start();
-		decrementer.start();
-		System.out.println("Main Thread Sleep End");
+		WorkerThread thread;
+		for(int i=0; i<5; i++) {
+			TimeUnit.MILLISECONDS.sleep(400);
+			thread = new WorkerThread(activityName, activityLatch);
+			thread.start();
+		}
 	}
 }
