@@ -1,54 +1,65 @@
 package com.concurrent;
 
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
 
-class CyclicBarrierRunnable extends Thread {
-	private CyclicBarrier barrier1;
-	private CyclicBarrier barrier2;
+class ViewerThread extends Thread {
+	private String movieName;
+	private CyclicBarrier movieBarrier;
 
-	public CyclicBarrierRunnable(CyclicBarrier barrier1, CyclicBarrier barrier2) {
-		this.barrier1 = barrier1;
-		this.barrier2 = barrier2;
+	public ViewerThread(String movieName, CyclicBarrier movieBarrier) {
+		this.movieName = movieName;
+		this.movieBarrier = movieBarrier;
 	}
 
 	@Override
 	public void run() {
+		System.out.println("Waiting for Viewers (" + movieName + "). Currently We Have - " + (movieBarrier.getNumberWaiting() + 1) + ", Required - " + movieBarrier.getParties());
 		try {
-			System.out.println("CyclicBarrierRunnable Start");
-
-			Thread.sleep(3000);
-			System.out.println(Thread.currentThread().getName()+" Waiting at Barrier 1");
-			barrier1.await();
-			Thread.sleep(3000);
-			System.out.println(Thread.currentThread().getName()+" Waiting at Barrier 2");
-			barrier2.await();
-
-			System.out.println("CyclicBarrierRunnable End");
-		} catch(Exception ex) {
+			movieBarrier.await();
+		} catch (InterruptedException | BrokenBarrierException ex) {
 			ex.printStackTrace();
 		}
 	}
 }
 
+class MovieShow extends Thread {
+	private String movieName;
+
+	public MovieShow(String movieName) {
+		this.movieName = movieName;
+	}
+
+	@Override
+	public void run() {
+		System.out.println("Showing Movie - " + this.movieName);
+	}
+}
+
 public class CyclicBarrierTest {
-	public static void main(String[] args) {
-		System.out.println("Cyclic Barrier Test Start");
+	public static void main(String[] args) throws Exception {
+		//	Barrier for Batman (Show will Start for Every 5 Users)
+		String movieName = "The Batman Begins";
+		MovieShow batman = new MovieShow(movieName);
+		CyclicBarrier batmanBarrier = new CyclicBarrier(5, batman);
 
-		Runnable barrierAction1 = () -> {
-			System.out.println("Barrier Action 1 Executed");
-		};
-		Runnable barrierAction2 = () -> {
-			System.out.println("Barrier Action 2 Executed");
-		};
+		ViewerThread thread;
+		for(int i=0; i<10; i++) {
+			TimeUnit.MILLISECONDS.sleep(400);
+			thread = new ViewerThread(movieName, batmanBarrier);
+			thread.start();
+		}
 
-		CyclicBarrier barrier1 = new CyclicBarrier(2, barrierAction1);
-		CyclicBarrier barrier2 = new CyclicBarrier(2, barrierAction2);
+		//	Barrier for SpiderMan (Show will Start for Every 7 Users)
+		movieName = "The Amazing SpiderMan";
+		MovieShow spiderMan = new MovieShow(movieName);
+		CyclicBarrier spiderManBarrier = new CyclicBarrier(7, spiderMan);
 
-		CyclicBarrierRunnable barrierRunnable1 = new CyclicBarrierRunnable(barrier1, barrier2);
-		CyclicBarrierRunnable barrierRunnable2 = new CyclicBarrierRunnable(barrier1, barrier2);
-		barrierRunnable1.start();
-		barrierRunnable2.start();
-
-		System.out.println("Cyclic Barrier Test End");
+		for(int i=0; i<14; i++) {
+			TimeUnit.MILLISECONDS.sleep(400);
+			thread = new ViewerThread(movieName, spiderManBarrier);
+			thread.start();
+		}
 	}
 }
