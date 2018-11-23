@@ -1,6 +1,6 @@
 package com.threads;
 
-class Buffer {
+class BufferProducerConsumer {
 	private boolean isProduced = false;
 
 	public synchronized void produce(int number) {
@@ -14,7 +14,7 @@ class Buffer {
 
 		System.out.println("Producing - "+number);
 		isProduced = true;
-		notify();
+		notifyAll();
 	}
 
 	public synchronized int consume(int number) {
@@ -28,17 +28,17 @@ class Buffer {
 
 		System.out.println("Consuming - "+number);
 		isProduced = false;
-		notify();
+		notifyAll();
 
 		return number;
 	}
 }
 
 class ProducerThread implements Runnable {
-	private Buffer buffer;
+	private BufferProducerConsumer buffer;
 	private int number;
 
-	public ProducerThread(Buffer buffer, int number) {
+	public ProducerThread(BufferProducerConsumer buffer, int number) {
 		this.buffer = buffer;
 		this.number = number;
 	}
@@ -50,10 +50,10 @@ class ProducerThread implements Runnable {
 }
 
 class ConsumerThread implements Runnable {
-	private Buffer buffer;
+	private BufferProducerConsumer buffer;
 	private int number;
 
-	public ConsumerThread(Buffer buffer, int number) {
+	public ConsumerThread(BufferProducerConsumer buffer, int number) {
 		this.buffer = buffer;
 		this.number = number;
 	}
@@ -66,7 +66,7 @@ class ConsumerThread implements Runnable {
 
 public class ProducerConsumerProblem {
 	public static void main(String[] args) {
-		Buffer buffer = new Buffer();
+		BufferProducerConsumer buffer = new BufferProducerConsumer();
 
 		for(int i=1; i<=10; i++) {
 			new Thread(new ProducerThread(buffer, i)).start();
