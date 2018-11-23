@@ -2,45 +2,49 @@ package com.threads;
 
 import java.util.concurrent.TimeUnit;
 
-class JoinThreadTask implements Runnable {
-	private int delay;
+public class JoinThreadDemo {
+	private static class SimpleThread extends Thread {
+		private String name;
+		private int delay;
 
-	public JoinThreadTask(int delay) {
-		this.delay = delay;
-	}
+		public SimpleThread(String name, int delay) {
+			super(name);
 
-	@Override
-	public void run() {
-		for(int i=1; i<=10; i++) {
-			System.out.println(Thread.currentThread().getName()+" - counter - "+i);
+			this.name = name;
+			this.delay = delay;
+		}
+
+		@Override
+		public void run() {
 			try {
-				TimeUnit.MILLISECONDS.sleep(delay);
+				System.out.println("Starting Thread - " + name);
+				TimeUnit.SECONDS.sleep(delay);
+				System.out.println("Ending Thread - " + name);
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
-}
 
-public class JoinThreadDemo {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Main Thread Start");
 
-		Thread thread1 = new Thread(new JoinThreadTask(500), "MyThread-1");
-		Thread thread2 = new Thread(new JoinThreadTask(200), "MyThread-2");
-		Thread thread3 = new Thread(new JoinThreadTask(300), "MyThread-3");
+		SimpleThread thread1 = new SimpleThread("Thread 1", 4);
+		SimpleThread thread2 = new SimpleThread("Thread 2", 2);
+		SimpleThread thread3 = new SimpleThread("Thread 3", 7);
+
 		thread1.start();
 		thread2.start();
 		thread3.start();
 
+		System.out.println("Joining Thread 1");
 		thread1.join();
-		System.out.println("Joining MyThread-1.");
 
+		System.out.println("Joining Thread 2");
 		thread2.join();
-		System.out.println("Joining MyThread-2.");
 
+		System.out.println("Joining Thread 3");
 		thread3.join();
-		System.out.println("Joining MyThread-3.");
 
 		System.out.println("Main Thread End");
 	}
