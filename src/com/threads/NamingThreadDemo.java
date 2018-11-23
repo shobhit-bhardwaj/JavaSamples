@@ -1,7 +1,5 @@
 package com.threads;
 
-import java.util.concurrent.TimeUnit;
-
 public class NamingThreadDemo {
 	private static class SimpleThread extends Thread {
 		private String name;
