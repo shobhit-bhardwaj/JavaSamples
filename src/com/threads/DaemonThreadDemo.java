@@ -2,33 +2,36 @@ package com.threads;
 
 import java.util.concurrent.TimeUnit;
 
-class DaemonThreadTask implements Runnable {
-	private int delay;
+public class DaemonThreadDemo {
+	private static class SimpleThread implements Runnable {
+		private int delay;
 
-	public DaemonThreadTask(int delay) {
-		this.delay = delay;
-	}
+		public SimpleThread(int delay) {
+			this.delay = delay;
+		}
 
-	@Override
-	public void run() {
-		String isDaemon = Thread.currentThread().isDaemon() ? "DAEMON" : "MAIN";
-		System.out.println(Thread.currentThread().getName()+" Nature - "+isDaemon);
+		@Override
+		public void run() {
+			String threadName = Thread.currentThread().getName();
+			String isDaemon = Thread.currentThread().isDaemon() ? "DAEMON" : "MAIN";
+			System.out.println(threadName + " Nature - " + isDaemon);
 
-		for(int i=1; i<=10; i++) {
-			try {
-				System.out.println(isDaemon+" :- "+Thread.currentThread().getName()+" - Counter - "+i);
-				TimeUnit.MILLISECONDS.sleep(delay);
-			} catch (Exception ex) {
-				ex.printStackTrace();
+			for(int i=1; i<=10; i++) {
+				try {
+					System.out.println(isDaemon + " :- " + threadName + " - Counter - " + i);
+					TimeUnit.SECONDS.sleep(delay);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 			}
+
+			System.out.println(threadName + " - Exiting");
 		}
 	}
-}
 
-public class DaemonThreadDemo {
 	public static void main(String[] args) {
-		Thread thread1 = new Thread(new DaemonThreadTask(200));
-		Thread thread2 = new Thread(new DaemonThreadTask(500));
+		Thread thread1 = new Thread(new SimpleThread(1));
+		Thread thread2 = new Thread(new SimpleThread(2));
 		thread2.setDaemon(true);
 
 		thread1.start();
