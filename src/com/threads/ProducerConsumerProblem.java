@@ -4,7 +4,7 @@ class Buffer {
 	private boolean isProduced = false;
 
 	public synchronized void produce(int number) {
-		if(isProduced) {
+		while (isProduced) {
 			try {
 				wait();
 			} catch (Exception ex) {
@@ -18,7 +18,7 @@ class Buffer {
 	}
 
 	public synchronized int consume(int number) {
-		if(!isProduced) {
+		while (!isProduced) {
 			try {
 				wait();
 			} catch (Exception ex) {
