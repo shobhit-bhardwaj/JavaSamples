@@ -3,16 +3,29 @@ package com.threads;
 import java.util.concurrent.TimeUnit;
 
 public class NamingThreadDemo {
+	private static class SimpleThread extends Thread {
+		private String name;
+
+		public SimpleThread(String name) {
+			super(name);
+			this.name = name;
+		}
+
+		@Override
+		public void run() {
+			System.out.println("Simple Thread Run By - " + name);
+		}
+	}
+
 	public static void main(String[] args) throws Exception {
 		System.out.println("Main Thread Start");
 
-		Thread thread1 = new Thread(new SimpleThreadTask(), "MyThread-1");
-		Thread thread2 = new Thread(new SimpleThreadTask());
-		thread1.start();
-		thread2.start();
-		TimeUnit.SECONDS.sleep(1);
-		thread2.setName("MyThread-2");	//	Change the Thread Name after Running the Thread.
+		SimpleThread thread1 = new SimpleThread("Simple Thread");
+		thread1.run();
 
-		System.out.println("Main Thread Done");
+		Thread thread2 = new Thread(() -> System.out.println("Runnable Thread Run By - " + Thread.currentThread().getName()), "Runnable Thread");
+		thread2.start();
+
+		System.out.println("Main Thread End");
 	}
 }
