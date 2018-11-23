@@ -4,13 +4,13 @@ import java.util.concurrent.TimeUnit;
 
 class WaitNotifyTask {
 	public synchronized void waitMethod() {
-		System.out.println(Thread.currentThread().getName()+" - waitMethod Start.");
 		try {
+			System.out.println(Thread.currentThread().getName()+" - waitMethod Start.");
 			wait();
+			System.out.println(Thread.currentThread().getName()+" - waitMethod End.");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		System.out.println(Thread.currentThread().getName()+" - waitMethod End.");
 	}
 
 	public synchronized void notifyMethod() {
@@ -25,42 +25,16 @@ class WaitNotifyTask {
 }
 
 public class NotifyAndNotifyAllDemo {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		WaitNotifyTask task = new WaitNotifyTask();
 
-		Thread thread1 = new Thread("Thread 1") {
-			public void run() {
-				task.waitMethod();
-			};
-		};
-		thread1.start();
+		new Thread(() -> { task.waitMethod(); }, "Thread 1").start();
+		new Thread(() -> { task.waitMethod(); }, "Thread 2").start();
+		new Thread(() -> { task.waitMethod(); }, "Thread 3").start();
 
-		Thread thread2 = new Thread("Thread 2") {
-			public void run() {
-				task.waitMethod();
-			};
-		};
-		thread2.start();
+		TimeUnit.SECONDS.sleep(1);
 
-		Thread thread3 = new Thread("Thread 3") {
-			public void run() {
-				task.waitMethod();
-			};
-		};
-		thread3.start();
-
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		Thread thread4 = new Thread("Thread 4") {
-			public void run() {
-				//task.notifyMethod();
-				task.notifyAllMethod();
-			};
-		};
-		thread4.start();
+		new Thread(() -> { task.notifyMethod(); }, "Thread 4").start();
+		//new Thread(() -> { task.notifyAllMethod(); }, "Thread 4").start();
 	}
 }
