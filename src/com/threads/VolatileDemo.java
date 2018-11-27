@@ -2,41 +2,44 @@ package com.threads;
 
 import java.util.concurrent.TimeUnit;
 
-class VolatileTask implements Runnable {
-	//private boolean running = true;	//	Sometimes Cached value is not Reset in Some OS
-	private volatile boolean running = true;	//	To Avoid This, Use volatile Keyword
-
-	@Override
-	public void run() {
-		while(running) {
-			try {
-				TimeUnit.MILLISECONDS.sleep(500);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-
-			System.out.println("Counting");
-		}
-	}
-
-	public void shutdown() {
-		running = false;
-	}
-}
-
 public class VolatileDemo {
-	public static void main(String[] args) {
-		VolatileTask task = new VolatileTask();
-		Thread thread = new Thread(task);
-		thread.start();
+	private static volatile int MY_VALUE = 0;
+	//private static int MY_VALUE = 0;
 
-		try {
-			TimeUnit.SECONDS.sleep(3);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+	private static class ChangeMaker extends Thread {
+		@Override
+		public void run() {
+			int local_value = MY_VALUE;
+
+			while(MY_VALUE < 5) {
+				System.out.println("Incrementing MY_VALUE to - " + (local_value + 1));
+				MY_VALUE = ++local_value;
+
+				try {
+					TimeUnit.SECONDS.sleep(1);
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
 		}
+	}
 
-		System.out.println("Calling Shutdown in Current Thread");
-		task.shutdown();
+	private static class ChangeListener extends Thread {
+		@Override
+		public void run() {
+			int local_value = MY_VALUE;
+
+			while(local_value < 5) {
+				if(local_value != MY_VALUE) {
+					System.out.println("Got Changed for MY_VALUE - " + MY_VALUE);
+					local_value = MY_VALUE;
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		new ChangeListener().start();
+		new ChangeMaker().start();
 	}
 }
