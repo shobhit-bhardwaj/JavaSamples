@@ -2,29 +2,35 @@ package com.threads;
 
 import java.util.concurrent.TimeUnit;
 
-class MyThreadByRunnable implements Runnable {
-	@Override
-	public void run() {
-		for(int i=1; i<=10; i++) {
+public class SimpleThreadCreationByRunnable {
+	private static class SimpleRunnable implements Runnable {
+		private int delay;
+
+		public SimpleRunnable(int delay) {
+			this.delay = delay;
+		}
+
+		@Override
+		public void run() {
 			try {
-				TimeUnit.MILLISECONDS.sleep(200);
-				System.out.println("Tick Tick "+i);
-			} catch (InterruptedException ex) {
+				System.out.println("Thread run() Start By - " + Thread.currentThread().getName());
+				TimeUnit.SECONDS.sleep(delay);
+				System.out.println("Thread run() End By - " + Thread.currentThread().getName());
+			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
-}
 
-public class SimpleThreadCreationByRunnable {
 	public static void main(String[] args) {
 		System.out.println("Main Thread Start");
 
-		MyThreadByRunnable thread1 = new MyThreadByRunnable();
-		MyThreadByRunnable thread2 = new MyThreadByRunnable();
-		new Thread(thread1).start();
-		new Thread(thread2).start();
+		Thread thread1 = new Thread(new SimpleRunnable(2), "Runnable Thread 1");
+		Thread thread2 = new Thread(() -> { System.out.println("This is Runnable Thread 2"); }, "Runnable Thread 1");
 
-		System.out.println("Main Thread Done");
+		thread1.start();
+		thread2.start();
+
+		System.out.println("Main Thread End");
 	}
 }
