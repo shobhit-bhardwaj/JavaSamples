@@ -3,7 +3,7 @@ package com.concurrent.executorFramework.exceptionHandling;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.threads.exceptionHandling.ThreadUncaughtExceptionHandler;
+import com.multithreading.exceptionHandling.ThreadUncaughtExceptionHandler;
 
 class ExceptionLeakingTask implements Runnable {
 	@Override

@@ -1,4 +1,4 @@
-package com.concurrent;
+package com.multithreading.concurrent;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
