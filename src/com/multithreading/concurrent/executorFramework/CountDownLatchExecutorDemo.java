@@ -1,4 +1,4 @@
-package com.concurrent.executorFramework;
+package com.multithreading.concurrent.executorFramework;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

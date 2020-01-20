@@ -1,9 +1,9 @@
-package com.concurrent.executorFramework.exceptionHandling;
+package com.multithreading.concurrent.executorFramework.exceptionHandling;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.multithreading.exceptionHandling.ThreadUncaughtExceptionHandler;
+import com.multithreading.core.exceptionHandling.ThreadUncaughtExceptionHandler;
 
 class ExceptionLeakingTask implements Runnable {
 	@Override

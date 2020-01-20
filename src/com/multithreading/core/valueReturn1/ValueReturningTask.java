@@ -1,4 +1,4 @@
-package com.multithreading.valueReturn1;
+package com.multithreading.core.valueReturn1;
 
 import java.util.concurrent.TimeUnit;
 

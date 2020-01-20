@@ -1,4 +1,4 @@
-package com.multithreading;
+package com.multithreading.core;
 
 class BufferOneTwoThree {
 	private int semaphore = 1;

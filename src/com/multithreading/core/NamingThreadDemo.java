@@ -1,4 +1,4 @@
-package com.multithreading;
+package com.multithreading.core;
 
 public class NamingThreadDemo {
 	private static class SimpleThread extends Thread {

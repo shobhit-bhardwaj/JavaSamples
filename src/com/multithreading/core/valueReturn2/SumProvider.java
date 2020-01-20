@@ -1,4 +1,4 @@
-package com.multithreading.valueReturn2;
+package com.multithreading.core.valueReturn2;
 
 public class SumProvider implements ValueProvider<Integer> {
 	@Override

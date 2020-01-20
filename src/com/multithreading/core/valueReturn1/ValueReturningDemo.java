@@ -1,4 +1,4 @@
-package com.multithreading.valueReturn1;
+package com.multithreading.core.valueReturn1;
 
 public class ValueReturningDemo {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.concurrent.executorFramework.exceptionHandling;
+package com.multithreading.concurrent.executorFramework.exceptionHandling;
 
 import java.util.concurrent.ThreadFactory;
 

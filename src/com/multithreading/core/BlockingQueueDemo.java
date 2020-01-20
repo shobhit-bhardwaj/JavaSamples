@@ -1,4 +1,4 @@
-package com.multithreading;
+package com.multithreading.core;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

@@ -1,4 +1,4 @@
-package com.multithreading.exceptionHandling;
+package com.multithreading.core.exceptionHandling;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 

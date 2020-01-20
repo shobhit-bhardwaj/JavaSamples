@@ -1,4 +1,4 @@
-package com.multithreading;
+package com.multithreading.core;
 
 class BufferProducerConsumer {
 	private boolean isProduced = false;

@@ -1,4 +1,4 @@
-package com.multithreading.exceptionHandling;
+package com.multithreading.core.exceptionHandling;
 
 class ExceptionLeakingTask implements Runnable {
 	@Override

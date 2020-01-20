@@ -1,4 +1,4 @@
-package com.multithreading;
+package com.multithreading.core;
 
 class FirstTask extends Thread {
 	@Override

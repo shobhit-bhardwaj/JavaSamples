@@ -1,4 +1,4 @@
-package com.multithreading;
+package com.multithreading.core;
 
 class Lock {
 	private boolean isLocked;
