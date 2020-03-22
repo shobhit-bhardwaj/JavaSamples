@@ -4,45 +4,36 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-class Locker {
-	private Lock lock = new ReentrantLock();
+public class ReentrantLockTest {
+	private static class Worker {
+		private Lock lock = new ReentrantLock();
 
-	public void lockingMethod() {
-		try {
-			String threadName = Thread.currentThread().getName();
+		public void myMethod() {
+			try {
+				System.out.println("Starting myMethod by - " + Thread.currentThread().getName());
 
-			System.out.println("--- Acquirng Lock --- " + threadName);
-			lock.lock();
+				lock.lock();
+				System.out.println("Entering lock section by - " + Thread.currentThread().getName());
+				TimeUnit.SECONDS.sleep(3);
+				System.out.println("Returning lock section by - " + Thread.currentThread().getName());
+				lock.unlock();
 
-			System.out.println("In Critical Section - " + threadName);
-			TimeUnit.SECONDS.sleep(3);
-
-			lock.unlock();
-			System.out.println("--- Release Lock --- " + threadName);
-		} catch (InterruptedException ex) {
-			ex.printStackTrace();
+				System.out.println("Returning myMethod by - " + Thread.currentThread().getName());
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
-}
 
-class LockingThread extends Thread {
-	private Locker locker;
+	public static void main(String[] args) {
+		Worker worker = new Worker();
 
-	public LockingThread(Locker locker) {
-		this.locker = locker;
-	}
-
-	public void run() {
-		locker.lockingMethod();
-	}
-}
-
-public class ReentrantLockTest {
-	public static void main(String[] args) throws Exception {
-		Locker locker = new Locker();
-
+		Thread[] threads = new Thread[5];
 		for(int i=0; i<5; i++) {
-			new LockingThread(locker).start();
+			threads[i] = new Thread(() ->  {
+				worker.myMethod();
+			});
+			threads[i].start();
 		}
 	}
 }
