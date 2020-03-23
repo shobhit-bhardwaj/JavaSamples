@@ -5,60 +5,50 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
-class DaemonThreadFactory implements ThreadFactory {
-	private static int threadCounter = 0;
+public class DaemonThreadByExecutorDemo {
+	private static class MyThreadFactory implements ThreadFactory {
+		private static int counter = 0;
 
-	@Override
-	public Thread newThread(Runnable runnable) {
-		Thread thread = null;
-		if(threadCounter%2 == 0) {
-			thread = new Thread(runnable, "MAIN-Thread-"+threadCounter);
-		} else {
-			thread = new Thread(runnable, "DAEMON-Thread-"+threadCounter);
-			thread.setDaemon(true);
+		@Override
+		public Thread newThread(Runnable runnable) {
+			counter++;
+
+			if(counter%2 == 0)
+				return new Thread(runnable);
+			else {
+				Thread thread = new Thread(runnable);
+				thread.setDaemon(true);
+
+				return thread;
+			}
 		}
-		threadCounter++;
-
-		return thread;
-	}
-}
-
-class DaemonThreadTask implements Runnable {
-	private int delay;
-
-	public DaemonThreadTask(int delay) {
-		this.delay = delay;
 	}
 
-	@Override
-	public void run() {
-		for(int i=1; i<=10; i++) {
+	private static class SimpleThread implements Runnable {
+		private int delay;
+
+		public SimpleThread(int delay) {
+			this.delay = delay;
+		}
+
+		@Override
+		public void run() {
 			try {
-				System.out.println(Thread.currentThread().getName()+" - Counter - "+i);
-				TimeUnit.MILLISECONDS.sleep(delay);
-			} catch (Exception ex) {
+				System.out.println("SimpleThread called by Thread - " + Thread.currentThread().getName() + " - Having daemon - " + Thread.currentThread().isDaemon());
+				TimeUnit.SECONDS.sleep(delay);
+				System.out.println("SimpleThread Exited by Thread - " + Thread.currentThread().getName() + " - Having daemon - " + Thread.currentThread().isDaemon());
+			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
-}
 
-public class DaemonThreadByExecutorDemo {
 	public static void main(String[] args) {
-		ExecutorService executorService = Executors.newCachedThreadPool(new DaemonThreadFactory());
-		executorService.execute(new DaemonThreadTask(200));
-		executorService.execute(new DaemonThreadTask(500));
+		ExecutorService service = Executors.newCachedThreadPool(new MyThreadFactory());
 
-		//	Validate the Cached Thread Pool
-		/*try {
-			TimeUnit.SECONDS.sleep(10);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}*/
+		service.execute(new SimpleThread(5));
+		service.execute(new SimpleThread(2));
 
-		executorService.execute(new DaemonThreadTask(300));
-		executorService.execute(new DaemonThreadTask(700));
-
-		executorService.shutdown();
+		service.shutdown();
 	}
 }
