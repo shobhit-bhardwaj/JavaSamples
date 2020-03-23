@@ -5,54 +5,48 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-class SimpleNumberPrinterTask implements Runnable {
-	private CountDownLatch latch;
-	private int delay;
+public class CountDownLatchExecutorDemo {
+	private static class SimpleThread implements Runnable {
+		private CountDownLatch countDownLatch;
+		private int delay;
 
-	public SimpleNumberPrinterTask(CountDownLatch latch, int delay) {
-		this.latch = latch;
-		this.delay = delay;
-	}
+		public SimpleThread(CountDownLatch countDownLatch, int delay) {
+			this.countDownLatch = countDownLatch;
+			this.delay = delay;
+		}
 
-	@Override
-	public void run() {
-		for(int i=1; i<=10; i++) {
-			System.out.println(Thread.currentThread().getName()+" - counter - "+i);
+		@Override
+		public void run() {
 			try {
-				TimeUnit.MILLISECONDS.sleep(delay);
-			} catch (Exception ex) {
+				System.out.println("SimpleThread Started by Thread - " + Thread.currentThread().getName());
+				TimeUnit.SECONDS.sleep(delay);
+
+				System.out.println("Countdown Decresed after delay - " + delay + " - By Thread - " + Thread.currentThread().getName());
+				countDownLatch.countDown();
+				System.out.println("New Countdown - " + countDownLatch.getCount());
+			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
 		}
-
-		if(latch != null) {
-			latch.countDown();
-			System.out.println("Updated Latch Count - "+latch.getCount());
-		}
 	}
-}
 
-public class CountDownLatchExecutorDemo {
 	public static void main(String[] args) throws Exception {
-		System.out.println("Main Thread Start");
+		CountDownLatch countDownLatch = new CountDownLatch(3);
 
-		CountDownLatch latch = new CountDownLatch(4);
-		//CountDownLatch latch = new CountDownLatch(2);
+		SimpleThread thread1 = new SimpleThread(countDownLatch, 3);
+		SimpleThread thread2 = new SimpleThread(countDownLatch, 5);
+		SimpleThread thread3 = new SimpleThread(countDownLatch, 7);
 
-		ExecutorService executorService = Executors.newCachedThreadPool();
-		executorService.submit(new SimpleNumberPrinterTask(latch, 300));
-		executorService.submit(new SimpleNumberPrinterTask(latch, 2000));
-		executorService.submit(new SimpleNumberPrinterTask(latch, 500));
-		executorService.submit(new SimpleNumberPrinterTask(latch, 1000));
+		ExecutorService service = Executors.newCachedThreadPool();
+		service .execute(thread1);
+		service .execute(thread2);
+		service .execute(thread3);
 
-		//executorService.submit(new SimpleNumberPrinterTask(500));
-		//executorService.submit(new SimpleNumberPrinterTask(1000));
+		countDownLatch.await();
+		//countDownLatch.await(6, TimeUnit.SECONDS);
 
-		latch.await();
-		System.out.println("Latch Await Time is Over.");
+		System.out.println("All Tasks Completed Successfully.");
 
-		executorService.shutdown();
-
-		System.out.println("Main Thread End");
+		service.shutdown();
 	}
 }
