@@ -1,39 +1,40 @@
 package com.multithreading.concurrent;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ReentrantLockTest {
-	private static class Worker {
-		private Lock lock = new ReentrantLock();
+	private static class SimpleTask {
+		private ReentrantLock lock = new ReentrantLock( );
 
-		public void myMethod() {
+		public void task() {
 			try {
-				System.out.println("Starting myMethod by - " + Thread.currentThread().getName());
-
+				System.out.println("Try to Entering lock section by - " + Thread.currentThread().getName());
 				lock.lock();
-				System.out.println("Entering lock section by - " + Thread.currentThread().getName());
-				TimeUnit.SECONDS.sleep(3);
-				System.out.println("Returning lock section by - " + Thread.currentThread().getName());
-				lock.unlock();
+				System.out.println("Entered in lock section by - " + Thread.currentThread().getName());
 
-				System.out.println("Returning myMethod by - " + Thread.currentThread().getName());
+				TimeUnit.SECONDS.sleep(3);
 			} catch (Exception ex) {
 				ex.printStackTrace();
+			} finally {
+				lock.unlock();
+				System.out.println("Returning lock section by - " + Thread.currentThread().getName());
 			}
+
+			System.out.println("Returning myMethod by - " + Thread.currentThread().getName());
 		}
 	}
 
 	public static void main(String[] args) {
-		Worker worker = new Worker();
+		SimpleTask task = new SimpleTask();
+		ExecutorService service = Executors.newCachedThreadPool();
 
-		Thread[] threads = new Thread[5];
 		for(int i=0; i<5; i++) {
-			threads[i] = new Thread(() ->  {
-				worker.myMethod();
-			});
-			threads[i].start();
+			service.execute(() -> task.task());
 		}
+
+		service.shutdown();
 	}
 }
