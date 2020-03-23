@@ -1,42 +1,36 @@
 package com.multithreading.concurrent;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-class MyThread extends Thread {
-	private String threadName;
-	private Semaphore semaphore;
+public class SemaphoreTest {
+	private static class Worker {
+		private Semaphore semaphore = new Semaphore(3);
 
-	public MyThread(String threadName, Semaphore semaphore) {
-		this.threadName = threadName;
-		this.semaphore = semaphore;
-	}
+		public void downloadData() {
+			try {
+				semaphore.acquire();
+				System.out.println("Downloading acquired by Thread - " + Thread.currentThread().getName());
 
-	@Override
-	public void run() {
-		try {
-			semaphore.acquire();
-			System.out.println("Semaphore acquire by - "+threadName);
-			for(int i=0; i<5; i++) {
-				boolean hasQueue = semaphore.hasQueuedThreads();
-				if(hasQueue)
-					System.out.println(semaphore.getQueueLength());
-				TimeUnit.MILLISECONDS.sleep(500);
+				TimeUnit.SECONDS.sleep(3);
+			} catch (InterruptedException ex) {
+				ex.printStackTrace();
+			} finally {
+				semaphore.release();
 			}
-			semaphore.release();
-			System.out.println("Semaphore release by - "+threadName);
-		} catch (Exception ex) {
-			ex.printStackTrace();
+
+			System.out.println("Downloading released by Thread - " + Thread.currentThread().getName());
 		}
 	}
-}
-
-public class SemaphoreTest {
 	public static void main(String[] args) {
-		Semaphore semaphore = new Semaphore(1);
-		Thread thread1 = new MyThread("Thread1", semaphore);
-		Thread thread2 = new MyThread("Thread2", semaphore);
-		thread1.start();
-		thread2.start();
+		Worker worker = new Worker();
+		ExecutorService service = Executors.newCachedThreadPool();
+
+		for(int i=0; i<10; i++)
+			service.execute(() -> worker.downloadData());
+
+		service.shutdown();
 	}
 }
