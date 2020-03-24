@@ -22,8 +22,6 @@ public class ReentrantLockTest {
 				lock.unlock();
 				System.out.println("Returning lock section by - " + Thread.currentThread().getName());
 			}
-
-			System.out.println("Returning myMethod by - " + Thread.currentThread().getName());
 		}
 	}
 
