@@ -4,13 +4,11 @@ import java.util.concurrent.TimeUnit;
 
 public class SimpleThreadCreationByClass {
 	private static class SimpleThread extends Thread {
-		private String name;
 		private int delay;
 
 		public SimpleThread(String name, int delay) {
 			super(name);
 
-			this.name = name;
 			this.delay = delay;
 		}
 
@@ -26,15 +24,13 @@ public class SimpleThreadCreationByClass {
 		}
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Main Thread Start");
-
-		SimpleThread thread1 = new SimpleThread("Simple Thread 1", 2);
-		Thread thread2 = new Thread(() -> { System.out.println("This is Runnable Thread"); }, "Runnable Thread 2");
-
+	public static void main(String[] args) throws Exception {
+		SimpleThread thread1 = new SimpleThread("Simple Thread 1", 1);
 		thread1.start();
-		thread2.start();
 
-		System.out.println("Main Thread End");
+		TimeUnit.SECONDS.sleep(3);
+
+		Thread thread2 = new Thread(() -> System.out.println("This is Runnable Thread"), "Runnable Thread 2");
+		thread2.start();
 	}
 }
