@@ -1,4 +1,4 @@
-package com.multithreading.core;
+package com.multithreading.implementation;
 
 class ReentrantLock {
 	private boolean isLocked;

@@ -1,4 +1,4 @@
-package com.multithreading.core;
+package com.multithreading.implementation;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
