@@ -32,7 +32,7 @@ public class NotifyAndNotifyAllDemo {
 		new Thread(() -> task.waitMethod(), "Thread 2").start();
 		new Thread(() -> task.waitMethod(), "Thread 3").start();
 
-		TimeUnit.SECONDS.sleep(1);
+		TimeUnit.SECONDS.sleep(3);
 
 		new Thread(() -> task.notifyMethod(), "Thread 4").start();
 		//new Thread(() -> task.notifyAllMethod(), "Thread 4").start();
