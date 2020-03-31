@@ -12,7 +12,7 @@ public class OneTwoThreeGenerator {
 					ex.printStackTrace();
 				}
 			}
-			System.out.println("Print One - "+number);
+			System.out.println("Print One - " + number);
 			semaphore = 2;
 			notifyAll();
 		}
@@ -25,7 +25,7 @@ public class OneTwoThreeGenerator {
 					ex.printStackTrace();
 				}
 			}
-			System.out.println("Print Two - "+number);
+			System.out.println("Print Two - " + number);
 			semaphore = 3;
 			notifyAll();
 		}
@@ -38,7 +38,7 @@ public class OneTwoThreeGenerator {
 					ex.printStackTrace();
 				}
 			}
-			System.out.println("Print Three - "+number);
+			System.out.println("Print Three - " + number);
 			semaphore = 1;
 			notifyAll();
 		}
