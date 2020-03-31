@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class TerminatingThreadDemo2 {
+public class TerminatingThreadByInterruptMethod {
 	private static class SimpleTask extends Thread {
 
 		public SimpleTask(String name) {
