@@ -2,58 +2,51 @@ package com.multithreading.core;
 
 import java.util.concurrent.TimeUnit;
 
-class TerminatingThreadTask1 implements Runnable {
-	private int delay;
+public class TerminatingThreadDemo1 {
+	private static class SimpleTask extends Thread {
+		private int delay;
 
-	private volatile boolean shutdown = false;
+		private volatile boolean shutdown = false;
 
-	public TerminatingThreadTask1(int delay) {
-		this.delay = delay;
-	}
+		public SimpleTask(String name, int delay) {
+			super(name);
 
-	@Override
-	public void run() {
-		for(int i=1;; i++) {
+			this.delay = delay;
+		}
+
+		@Override
+		public void run() {
 			try {
-				System.out.println(Thread.currentThread().getName()+" - Counter - "+i);
-				TimeUnit.MILLISECONDS.sleep(delay);
+				for(int i=1;; i++) {
+					System.out.println(Thread.currentThread().getName() + " - Counter - " + i);
+					TimeUnit.MILLISECONDS.sleep(delay);
+
+					if(shutdown) {
+						System.out.println("Shutdown is true for - " + Thread.currentThread().getName());
+						break;
+					}
+				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-
-			synchronized(this) {
-				if(shutdown) {
-					System.out.println("Shutdown is true for - "+Thread.currentThread().getName());
-					break;
-				}
-			}
 		}
-	}
 
-	public void cancel() {
-		System.out.println("cancel() is called for - "+Thread.currentThread().getName());
-
-		synchronized(this) {
+		public void cancel() {
+			System.out.println("cancel() is called for - " + Thread.currentThread().getName());
 			shutdown = true;
 		}
 	}
-}
 
-public class TerminatingThreadDemo1 {
-	public static void main(String[] args) {
-		TerminatingThreadTask1 task1 = new TerminatingThreadTask1(200);
-		TerminatingThreadTask1 task2 = new TerminatingThreadTask1(300);
-		TerminatingThreadTask1 task3 = new TerminatingThreadTask1(500);
+	public static void main(String[] args) throws Exception {
+		SimpleTask task1 = new SimpleTask("Thread-1", 500);
+		SimpleTask task2 = new SimpleTask("Thread-2", 700);
+		SimpleTask task3 = new SimpleTask("Thread-3", 800);
 
-		new Thread(task1, "MyThread-1").start();
-		new Thread(task2, "MyThread-2").start();
-		new Thread(task3, "MyThread-3").start();
+		task1.start();
+		task2.start();
+		task3.start();
 
-		try {
-			Thread.sleep(3000);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		TimeUnit.SECONDS.sleep(5);
 
 		task1.cancel();
 		task2.cancel();
