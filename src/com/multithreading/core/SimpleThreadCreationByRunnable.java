@@ -22,15 +22,13 @@ public class SimpleThreadCreationByRunnable {
 		}
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Main Thread Start");
-
+	public static void main(String[] args) throws Exception {
 		Thread thread1 = new Thread(new SimpleRunnable(2), "Runnable Thread 1");
-		Thread thread2 = new Thread(() -> { System.out.println("This is Runnable Thread 2"); }, "Runnable Thread 1");
-
 		thread1.start();
-		thread2.start();
 
-		System.out.println("Main Thread End");
+		TimeUnit.SECONDS.sleep(3);
+
+		Thread thread2 = new Thread(() -> System.out.println("This is Runnable Thread 2"), "Runnable Thread 2");
+		thread2.start();
 	}
 }
