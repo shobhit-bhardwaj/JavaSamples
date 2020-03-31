@@ -1,12 +1,11 @@
 package com.multithreading.core;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class SynchronizedMultipleBlockDemo {
+public class SynchronizedMultipleBlockTest {
 	private Random random = new Random();
 
 	private Object lock1 = new Object();
@@ -19,10 +18,10 @@ public class SynchronizedMultipleBlockDemo {
 		synchronized (lock1) {
 			try {
 				TimeUnit.MILLISECONDS.sleep(1);
+				list1.add(random.nextInt(100));
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-			list1.add(random.nextInt(100));
 		}
 	}
 
@@ -30,10 +29,10 @@ public class SynchronizedMultipleBlockDemo {
 		synchronized (lock2) {
 			try {
 				TimeUnit.MILLISECONDS.sleep(1);
+				list2.add(random.nextInt(100));
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-			list2.add(random.nextInt(100));
 		}
 	}
 
@@ -44,35 +43,24 @@ public class SynchronizedMultipleBlockDemo {
 		}
 	}
 
-	public static void main(String[] args) {
-		SynchronizedMultipleBlockDemo test = new SynchronizedMultipleBlockDemo();
+	public static void main(String[] args) throws Exception {
+		SynchronizedMultipleBlockTest test = new SynchronizedMultipleBlockTest();
 
-		Date startDate = new Date();
+		long startTime = System.currentTimeMillis();
 
-		Thread thread1 = new Thread() {
-			public void run() {
-				test.process();
-			};
-		};
+		Thread thread1 = new Thread(() -> test.process());
 		thread1.start();
 
-		Thread thread2 = new Thread() {
-			public void run() {
-				test.process();
-			};
-		};
+		Thread thread2 = new Thread(() -> test.process());
 		thread2.start();
 
-		try {
-			thread1.join();
-			thread2.join();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		thread1.join();
+		thread2.join();
 
-		Date endDate = new Date();
-		System.out.println("Time Taken - "+(startDate.getTime() - endDate.getTime()));
+		long endTime = System.currentTimeMillis();
 
-		System.out.println("List Sizes :- "+test.list1.size()+" - "+test.list1.size());
+		System.out.println("Time Taken - " + (endTime - startTime));
+
+		System.out.println("List Sizes - " + test.list1.size() + " - " + test.list1.size());
 	}
 }
