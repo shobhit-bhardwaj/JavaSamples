@@ -2,24 +2,24 @@ package com.multithreading.core;
 
 import java.util.concurrent.TimeUnit;
 
-public class JoinThreadDemo {
-	private static class SimpleThread extends Thread {
-		private String name;
+public class ThreadJoinTest {
+	private static class SimpleTask extends Thread {
 		private int delay;
 
-		public SimpleThread(String name, int delay) {
+		public SimpleTask(String name, int delay) {
 			super(name);
 
-			this.name = name;
 			this.delay = delay;
 		}
 
 		@Override
 		public void run() {
 			try {
-				System.out.println("Starting Thread - " + name);
+				System.out.println("Starting Thread - " + Thread.currentThread().getName());
+
 				TimeUnit.SECONDS.sleep(delay);
-				System.out.println("Ending Thread - " + name);
+
+				System.out.println("Ending Thread - " + Thread.currentThread().getName());
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -29,9 +29,9 @@ public class JoinThreadDemo {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Main Thread Start");
 
-		SimpleThread thread1 = new SimpleThread("Thread 1", 4);
-		SimpleThread thread2 = new SimpleThread("Thread 2", 2);
-		SimpleThread thread3 = new SimpleThread("Thread 3", 7);
+		SimpleTask thread1 = new SimpleTask("Thread 1", 4);
+		SimpleTask thread2 = new SimpleTask("Thread 2", 2);
+		SimpleTask thread3 = new SimpleTask("Thread 3", 7);
 
 		thread1.start();
 		thread2.start();
