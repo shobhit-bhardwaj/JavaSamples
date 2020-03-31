@@ -2,7 +2,7 @@ package com.multithreading.core;
 
 import java.util.concurrent.TimeUnit;
 
-public class VolatileDemo {
+public class VolatileTest {
 	private static volatile int MY_VALUE = 0;
 	//private static int MY_VALUE = 0;
 
