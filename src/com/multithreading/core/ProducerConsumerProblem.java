@@ -1,76 +1,46 @@
 package com.multithreading.core;
 
-class BufferProducerConsumer {
-	private boolean isProduced = false;
-
-	public synchronized void produce(int number) {
-		while (isProduced) {
-			try {
-				wait();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-
-		System.out.println("Producing - "+number);
-		isProduced = true;
-		notifyAll();
-	}
-
-	public synchronized int consume(int number) {
-		while (!isProduced) {
-			try {
-				wait();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-
-		System.out.println("Consuming - "+number);
-		isProduced = false;
-		notifyAll();
-
-		return number;
-	}
-}
-
-class ProducerThread implements Runnable {
-	private BufferProducerConsumer buffer;
-	private int number;
-
-	public ProducerThread(BufferProducerConsumer buffer, int number) {
-		this.buffer = buffer;
-		this.number = number;
-	}
-
-	@Override
-	public void run() {
-		buffer.produce(number);
-	}
-}
-
-class ConsumerThread implements Runnable {
-	private BufferProducerConsumer buffer;
-	private int number;
-
-	public ConsumerThread(BufferProducerConsumer buffer, int number) {
-		this.buffer = buffer;
-		this.number = number;
-	}
-
-	@Override
-	public void run() {
-		buffer.consume(number);
-	}
-}
-
 public class ProducerConsumerProblem {
+	private static class Buffer {
+		public boolean produced;
+
+		public synchronized void produce(int number) {
+			try {
+				while(produced) {
+					this.wait();
+				}
+
+				System.out.println("Produce - " + number);
+				produced = true;
+				notifyAll();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+		public synchronized void consume(int number) {
+			try {
+				while(!produced) {
+					this.wait();
+				}
+
+				System.out.println("Consume - " + number);
+				produced = false;
+				notifyAll();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
 	public static void main(String[] args) {
-		BufferProducerConsumer buffer = new BufferProducerConsumer();
+		Buffer buffer = new Buffer();
 
 		for(int i=1; i<=10; i++) {
-			new Thread(new ProducerThread(buffer, i)).start();
-			new Thread(new ConsumerThread(buffer, i)).start();
+			int x = i;
+
+			new Thread(() -> buffer.produce(x)).start();
+			new Thread(() -> buffer.consume(x)).start();
 		}
 	}
 }
