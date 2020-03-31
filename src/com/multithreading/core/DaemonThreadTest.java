@@ -2,11 +2,11 @@ package com.multithreading.core;
 
 import java.util.concurrent.TimeUnit;
 
-public class DaemonThreadDemo {
-	private static class SimpleThread implements Runnable {
+public class DaemonThreadTest {
+	private static class SimpleTask extends Thread {
 		private int delay;
 
-		public SimpleThread(int delay) {
+		public SimpleTask(int delay) {
 			this.delay = delay;
 		}
 
@@ -18,23 +18,23 @@ public class DaemonThreadDemo {
 
 			for(int i=1; i<=10; i++) {
 				try {
-					System.out.println(isDaemon + " :- " + threadName + " - Counter - " + i);
+					System.out.println(isDaemon + " - " + threadName + " - Counter - " + i);
 					TimeUnit.SECONDS.sleep(delay);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 			}
 
-			System.out.println(threadName + " - Exiting");
+			System.out.println(isDaemon + " - " + threadName + " - Exiting");
 		}
 	}
 
 	public static void main(String[] args) {
-		Thread thread1 = new Thread(new SimpleThread(1));
-		Thread thread2 = new Thread(new SimpleThread(2));
-		thread2.setDaemon(true);
+		SimpleTask task1 = new SimpleTask(1);
+		SimpleTask task2 = new SimpleTask(2);
+		task2.setDaemon(true);
 
-		thread1.start();
-		thread2.start();
+		task1.start();
+		task2.start();
 	}
 }
