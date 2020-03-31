@@ -2,7 +2,7 @@ package com.multithreading.core;
 
 import java.util.concurrent.TimeUnit;
 
-public class TerminatingThreadDemo1 {
+public class TerminatingThreadByCancelMethod {
 	private static class SimpleTask extends Thread {
 		private int delay;
 
