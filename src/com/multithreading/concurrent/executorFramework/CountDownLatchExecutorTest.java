@@ -21,7 +21,7 @@ public class CountDownLatchExecutorTest {
 				System.out.println("SimpleTask Started by Thread - " + Thread.currentThread().getName());
 				TimeUnit.SECONDS.sleep(delay);
 
-				System.out.println("Countdown Decresed after delay - " + delay + " - By Thread - " + Thread.currentThread().getName());
+				System.out.println("Countdown Decresed after delay - " + delay + " - by Thread - " + Thread.currentThread().getName());
 				countDownLatch.countDown();
 				System.out.println("New Countdown - " + countDownLatch.getCount());
 			} catch (InterruptedException ex) {
