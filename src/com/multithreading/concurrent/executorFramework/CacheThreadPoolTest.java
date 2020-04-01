@@ -5,10 +5,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
-public class CacheThreadPoolDemo {
+public class CacheThreadPoolTest {
 	private static class MyThreadFactory implements ThreadFactory {
 		private static int counter = 1;
-		private static String name = "MyThread-";
+		private static String name = "Thread-";
 
 		@Override
 		public Thread newThread(Runnable runnable) {
@@ -17,7 +17,7 @@ public class CacheThreadPoolDemo {
 		}
 	}
 
-	private static class SimpleThread implements Runnable {
+	private static class SimpleTask implements Runnable {
 		@Override
 		public void run() {
 			try {
@@ -35,12 +35,12 @@ public class CacheThreadPoolDemo {
 		ExecutorService executor = Executors.newCachedThreadPool(new MyThreadFactory());
 
 		for(int i=0; i<3; i++)
-			executor.submit(new SimpleThread());
+			executor.submit(new SimpleTask());
 
 		TimeUnit.SECONDS.sleep(5);
 
 		for(int i=0; i<2; i++)
-			executor.submit(new SimpleThread());
+			executor.submit(new SimpleTask());
 
 		executor.shutdown();
 	}
