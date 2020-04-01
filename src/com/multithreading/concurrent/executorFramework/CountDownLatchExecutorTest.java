@@ -18,7 +18,7 @@ public class CountDownLatchExecutorTest {
 		@Override
 		public void run() {
 			try {
-				System.out.println("SimpleThread Started by Thread - " + Thread.currentThread().getName());
+				System.out.println("SimpleTask Started by Thread - " + Thread.currentThread().getName());
 				TimeUnit.SECONDS.sleep(delay);
 
 				System.out.println("Countdown Decresed after delay - " + delay + " - By Thread - " + Thread.currentThread().getName());
