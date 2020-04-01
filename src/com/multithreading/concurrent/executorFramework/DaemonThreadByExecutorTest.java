@@ -34,9 +34,9 @@ public class DaemonThreadByExecutorTest {
 		@Override
 		public void run() {
 			try {
-				System.out.println("SimpleThread called by Thread - " + Thread.currentThread().getName() + " - Having daemon - " + Thread.currentThread().isDaemon());
+				System.out.println("SimpleTask called by Thread - " + Thread.currentThread().getName() + " - Having daemon - " + Thread.currentThread().isDaemon());
 				TimeUnit.SECONDS.sleep(delay);
-				System.out.println("SimpleThread Exited by Thread - " + Thread.currentThread().getName() + " - Having daemon - " + Thread.currentThread().isDaemon());
+				System.out.println("SimpleTask Exited by Thread - " + Thread.currentThread().getName() + " - Having daemon - " + Thread.currentThread().isDaemon());
 			} catch (InterruptedException ex) {
 				ex.printStackTrace();
 			}
