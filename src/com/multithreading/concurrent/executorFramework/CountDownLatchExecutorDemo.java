@@ -6,11 +6,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class CountDownLatchExecutorDemo {
-	private static class SimpleThread implements Runnable {
+	private static class SimpleTask implements Runnable {
 		private CountDownLatch countDownLatch;
 		private int delay;
 
-		public SimpleThread(CountDownLatch countDownLatch, int delay) {
+		public SimpleTask(CountDownLatch countDownLatch, int delay) {
 			this.countDownLatch = countDownLatch;
 			this.delay = delay;
 		}
@@ -33,14 +33,14 @@ public class CountDownLatchExecutorDemo {
 	public static void main(String[] args) throws Exception {
 		CountDownLatch countDownLatch = new CountDownLatch(3);
 
-		SimpleThread thread1 = new SimpleThread(countDownLatch, 3);
-		SimpleThread thread2 = new SimpleThread(countDownLatch, 5);
-		SimpleThread thread3 = new SimpleThread(countDownLatch, 7);
+		SimpleTask task1 = new SimpleTask(countDownLatch, 3);
+		SimpleTask task2 = new SimpleTask(countDownLatch, 5);
+		SimpleTask task3 = new SimpleTask(countDownLatch, 7);
 
 		ExecutorService service = Executors.newCachedThreadPool();
-		service .execute(thread1);
-		service .execute(thread2);
-		service .execute(thread3);
+		service .execute(task1);
+		service .execute(task2);
+		service .execute(task3);
 
 		countDownLatch.await();
 		//countDownLatch.await(6, TimeUnit.SECONDS);
