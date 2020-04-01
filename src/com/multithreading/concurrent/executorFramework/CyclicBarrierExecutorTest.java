@@ -1,24 +1,23 @@
 package com.multithreading.concurrent.executorFramework;
 
 import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class CyclicBarrierExecutorDemo {
-	private static class SimpleThread implements Runnable {
+public class CyclicBarrierExecutorTest {
+	private static class SimpleTask implements Runnable {
 		private CyclicBarrier cyclicBarrier;
 
-		public SimpleThread(CyclicBarrier cyclicBarrier) {
+		public SimpleTask(CyclicBarrier cyclicBarrier) {
 			this.cyclicBarrier = cyclicBarrier;
 		}
 
 		@Override
 		public void run() {
 			try {
-				System.out.println("SimpleThread Started by Thread - " + Thread.currentThread().getName());
+				System.out.println("SimpleTask Started by Thread - " + Thread.currentThread().getName());
 				cyclicBarrier.await();
 			} catch (BrokenBarrierException | InterruptedException ex) {
 				ex.printStackTrace();
@@ -33,7 +32,7 @@ public class CyclicBarrierExecutorDemo {
 
 		ExecutorService service = Executors.newCachedThreadPool();
 		for(int i=0; i<9; i++) {
-			service .execute(new SimpleThread(cyclicBarrier));
+			service .execute(new SimpleTask(cyclicBarrier));
 			TimeUnit.SECONDS.sleep(2);
 		}
 
