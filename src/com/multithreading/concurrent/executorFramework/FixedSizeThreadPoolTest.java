@@ -4,14 +4,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-public class FixedSizeThreadPoolDemo {
-	private static class SimpleThread implements Runnable {
+public class FixedSizeThreadPoolTest {
+	private static class SimpleTask implements Runnable {
 		@Override
 		public void run() {
 			try {
 				for(int i=0; i<5; i++) {
 					TimeUnit.SECONDS.sleep(1);
-					System.out.println("Counter - " + (i + 1) + " - By Thread - " + Thread.currentThread().getName());
+					System.out.println("Counter - " + (i + 1) + " - by Thread - " + Thread.currentThread().getName());
 				}
 			} catch (InterruptedException ex) {
 				ex.printStackTrace();
@@ -23,7 +23,7 @@ public class FixedSizeThreadPoolDemo {
 		ExecutorService executor = Executors.newFixedThreadPool(3);
 
 		for(int i=0; i<5; i++)
-			executor.submit(new SimpleThread());
+			executor.submit(new SimpleTask());
 
 		executor.shutdown();
 	}
