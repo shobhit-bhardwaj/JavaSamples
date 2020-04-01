@@ -5,18 +5,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-public class ThreadAliveCheckByExecutorDemo {
-	private static class SimpleRunnable implements Runnable {
+public class ThreadAliveCheckByExecutorTest {
+	private static class SimpleTask implements Runnable {
 		private int delay;
 
-		public SimpleRunnable(int delay) {
+		public SimpleTask(int delay) {
 			this.delay = delay;
 		}
 
 		@Override
 		public void run() {
 			try {
-				System.out.println("SimpleCallable Thread running by Thread - " + Thread.currentThread().getName());
+				System.out.println("SimpleTask Thread running by Thread - " + Thread.currentThread().getName());
 				TimeUnit.SECONDS.sleep(delay);
 			} catch (InterruptedException ex) {
 				ex.printStackTrace();
@@ -25,12 +25,12 @@ public class ThreadAliveCheckByExecutorDemo {
 	}
 
 	public static void main(String[] args) throws Exception {
-		SimpleRunnable runnable1 = new SimpleRunnable(4);
-		SimpleRunnable runnable2 = new SimpleRunnable(7);
+		SimpleTask task1 = new SimpleTask(4);
+		SimpleTask task2 = new SimpleTask(7);
 
 		ExecutorService service = Executors.newCachedThreadPool();
-		Future<?> future1 = service.submit(runnable1);
-		Future<Integer> future2 = service.submit(runnable2, 100);
+		Future<?> future1 = service.submit(task1);
+		Future<Integer> future2 = service.submit(task2, 100);
 
 		while(true) {
 			TimeUnit.MILLISECONDS.sleep(500);
