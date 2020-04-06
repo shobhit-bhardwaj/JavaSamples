@@ -1,6 +1,6 @@
 package com.collection.generics;
 
-public class WithoutGenericClassProblem {
+public class ProblemWithoutGenericClass {
 	private static class SimpleClass {
 		private Object value;
 
