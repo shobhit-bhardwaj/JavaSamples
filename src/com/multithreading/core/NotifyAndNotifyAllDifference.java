@@ -2,7 +2,7 @@ package com.multithreading.core;
 
 import java.util.concurrent.TimeUnit;
 
-public class NotifyAndNotifyAllDemo {
+public class NotifyAndNotifyAllDifference {
 	private static class SimpleTask {
 		public synchronized void waitMethod() {
 			try {
