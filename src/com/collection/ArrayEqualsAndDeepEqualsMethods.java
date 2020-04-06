@@ -1,4 +1,4 @@
-package com.collection.generics;
+package com.collection;
 
 import java.util.Arrays;
 
