@@ -12,7 +12,7 @@ public class RemoveParticularMultipleElementsList {
 		List<Integer> removeElements = Arrays.asList(null, 3);
 		System.out.println("Remove Element - " + removeElements);
 
-		while(integers.removeAll(Arrays.asList(null, 3)));
+		while(integers.removeAll(removeElements));
 
 		System.out.println("Final List - " + integers);
 	}
