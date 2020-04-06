@@ -3,7 +3,7 @@ package com.collection.generics;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WildCardGetAndPutPrincile {
+public class WildcardGetAndPutPrinciple {
 	public static void main(String[] args) {
 		List<Integer> integers = new ArrayList<>();
 		integers.add(1);
