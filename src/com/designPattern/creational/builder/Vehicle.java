@@ -4,6 +4,7 @@ public class Vehicle {
 	private int tyres;
 	private int seats;
 
+	private int strokes;
 	private boolean airbags;
 	private boolean powerStearing;
 	private boolean powerWindows;
@@ -11,6 +12,7 @@ public class Vehicle {
 	private Vehicle(VehicleBuilder vehicleBuilder) {
 		this.tyres = vehicleBuilder.tyres;
 		this.seats = vehicleBuilder.seats;
+		this.strokes = vehicleBuilder.strokes;
 		this.airbags = vehicleBuilder.airbags;
 		this.powerStearing = vehicleBuilder.powerStearing;
 		this.powerWindows = vehicleBuilder.powerWindows;
@@ -20,6 +22,7 @@ public class Vehicle {
 		private int tyres;
 		private int seats;
 
+		private int strokes;
 		private boolean airbags;
 		private boolean powerStearing;
 		private boolean powerWindows;
@@ -27,6 +30,11 @@ public class Vehicle {
 		public VehicleBuilder(int tyres, int seats) {
 			this.tyres = tyres;
 			this.seats = seats;
+		}
+
+		public VehicleBuilder setStrokes(int strokes) {
+			this.strokes = strokes;
+			return this;
 		}
 
 		public VehicleBuilder setAirbags(boolean airbags) {
@@ -51,6 +59,7 @@ public class Vehicle {
 
 	@Override
 	public String toString() {
-		return "Vehicle [tyres=" + tyres + ", seats=" + seats + ", airbags=" + airbags + ", powerStearing=" + powerStearing + ", powerWindows=" + powerWindows + "]";
+		return "Vehicle [tyres=" + tyres + ", seats=" + seats + ", strokes=" + strokes + ", airbags=" + airbags
+				+ ", powerStearing=" + powerStearing + ", powerWindows=" + powerWindows + "]";
 	}
 }
