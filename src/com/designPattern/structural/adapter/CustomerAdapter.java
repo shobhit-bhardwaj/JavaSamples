@@ -1,6 +1,6 @@
 package com.designPattern.structural.adapter;
 
-public class CustomerAdapter extends NewCustomer implements Customer {
+public class CustomerAdapter extends NewCustomer {
 	private OldCustomer oldCustomer;
 
 	public CustomerAdapter(OldCustomer oldCustomer) {
