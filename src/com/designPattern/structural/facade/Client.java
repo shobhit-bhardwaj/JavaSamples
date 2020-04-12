@@ -3,7 +3,11 @@ package com.designPattern.structural.facade;
 import com.designPattern.structural.facade.HelperFacade.DBType;
 import com.designPattern.structural.facade.HelperFacade.ReportType;
 
-public class TestFacade {
+/*
+ * Facade Design Pattern provide a unified interface to a set of interfaces in a subsystem.
+ * Facade defines a higher-level interface that makes the subsystem easier to use.
+ */
+public class Client {
 	public static void main(String[] args) {
 		String tableName = "testtable";
 
