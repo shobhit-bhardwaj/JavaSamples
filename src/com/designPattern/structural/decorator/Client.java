@@ -1,6 +1,13 @@
 package com.designPattern.structural.decorator;
 
-public class TestDecorator {
+/*
+ * Decorator Design Pattern is used to add additional features or behaviors to a particular instance of a
+ * class, while not modifying the other instances of same class.
+ * 
+ * Inheritance do the same thing but it binds the responsibility to sub class at compile time, it is static
+ * binded. Decorators provide a flexible alternative to sub-classing for extending functionality.
+ */
+public class Client {
 	public static void main(String[] args) {
 		System.out.println("Full Subscription -");
 		SetaliteTV setaliteTV = new ESPNChannelPackage(new CNChannelPackage(new SkyTV()));
