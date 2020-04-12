@@ -2,13 +2,11 @@ package com.designPattern.structural.proxy;
 
 public class CommandExecutorProxy implements CommandExecutor {
 	private boolean isAdmin = false;
-	private CommandExecutor executor;
+	private CommandExecutor executor = new CommandExecutorImpl();
 
 	public CommandExecutorProxy(String username, String password) {
 		if("shobhit".equals(username) && "bhardwaj".equals(password))
 			isAdmin = true;
-
-		executor = new CommandExecutorImpl();
 	}
 
 	@Override
