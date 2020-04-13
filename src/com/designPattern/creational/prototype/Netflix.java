@@ -10,6 +10,8 @@ public class Netflix {
 	private static Map<String, List<? extends PrototypeCapable>> CONTENT_MAP;
 
 	static {
+		System.out.println("Start Loading Data in Prototype Object");
+
 		CONTENT_MAP = new HashMap<>();
 
 		List<Movie> movies = new ArrayList<>();
@@ -22,14 +24,17 @@ public class Netflix {
 		List<WebSeries> webSeries = new ArrayList<>();
 		webSeries.addAll(Arrays.asList(new WebSeries("Sacred Games"), new WebSeries("Ghoul"), new WebSeries("Bard of Blood")));
 		CONTENT_MAP.put("webSeries", webSeries);
+
+		System.out.println("Data Loaded in Prototype Object - " + CONTENT_MAP);
+		System.out.println();
 	}
 
-	public static List<PrototypeCapable> getInstance(String type) throws CloneNotSupportedException {
-		List<PrototypeCapable> prototypes = new ArrayList<>();
+	public static List<PrototypeCapable> getContent(String type) throws CloneNotSupportedException {
+		List<PrototypeCapable> contents = new ArrayList<>();
 
-		for(PrototypeCapable object : CONTENT_MAP.get(type))
-			prototypes.add(((PrototypeCapable) object).clone());
+		for(PrototypeCapable content : CONTENT_MAP.get(type))
+			contents.add(((PrototypeCapable) content).clone());
 
-		return prototypes;
+		return contents;
 	}
 }

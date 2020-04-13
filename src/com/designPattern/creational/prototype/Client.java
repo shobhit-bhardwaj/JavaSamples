@@ -11,15 +11,15 @@ import java.util.List;
 public class Client {
 	public static void main(String[] args) {
 		try {
-			List<PrototypeCapable> movies = Netflix.getInstance("movies");
+			List<PrototypeCapable> movies = Netflix.getContent("movies");
 			System.out.println("Movie List - " + movies);
 			System.out.println();
 
-			List<PrototypeCapable> tvShows = Netflix.getInstance("tvShows");
+			List<PrototypeCapable> tvShows = Netflix.getContent("tvShows");
 			System.out.println("TV Show List - " + tvShows);
 			System.out.println();
 
-			List<PrototypeCapable> webSeries = Netflix.getInstance("webSeries");
+			List<PrototypeCapable> webSeries = Netflix.getContent("webSeries");
 			System.out.println("Web Series List - " + webSeries);
 		} catch (CloneNotSupportedException ex) {
 			ex.printStackTrace();
