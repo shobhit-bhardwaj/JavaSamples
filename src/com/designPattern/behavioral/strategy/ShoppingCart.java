@@ -10,9 +10,9 @@ public class ShoppingCart {
 		items.add(item);
 	}
 
-	public int calculateAmount() {
+	private int calculateAmount() {
 		int total = 0;
-		for(Item item : items)
+		for (Item item : items)
 			total += item.getItemPrice();
 
 		return total;
@@ -20,6 +20,7 @@ public class ShoppingCart {
 
 	public void pay(PaymentStrategy paymentStrategy) {
 		int total = calculateAmount();
+
 		paymentStrategy.pay(total);
 	}
 }
