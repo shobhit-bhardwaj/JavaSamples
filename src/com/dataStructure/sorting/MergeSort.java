@@ -1,7 +1,9 @@
 package com.dataStructure.sorting;
 
-public class MergeSortTest {
-	public void sort(int[] array, int low, int high) {
+import java.util.Arrays;
+
+public class MergeSort {
+	public static void sort(int[] array, int low, int high) {
 		if(low < high) {
 			int middle = (low + high) / 2;
 			sort(array, low, middle);
@@ -11,7 +13,7 @@ public class MergeSortTest {
 		}
 	}
 
-	public void merge(int[] array, int low, int middle, int high) {
+	private static void merge(int[] array, int low, int middle, int high) {
 		int n1 = middle - low + 1;
 		int n2 = high - middle;
 
@@ -47,11 +49,10 @@ public class MergeSortTest {
 	}
 
 	public static void main(String[] args) {
-		MergeSortTest sort = new MergeSortTest();
-
 		int[] array = new int[]{43, 54, 21, 12, 58, 76, 38, 26, 15, 66};
-		sort.sort(array, 0, array.length - 1);
-		for(int value : array)
-			System.out.print(value + "\t");
+
+		sort(array, 0, array.length - 1);
+
+		System.out.println(Arrays.toString(array));
 	}
 }
