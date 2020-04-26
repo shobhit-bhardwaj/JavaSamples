@@ -1,7 +1,9 @@
 package com.dataStructure.sorting;
 
-public class HeapSortTest {
-	public void sort(int[] a) {
+import java.util.Arrays;
+
+public class HeapSort {
+	public static void sort(int[] a) {
 		int n = a.length;
 		for(int i=n/2-1; i>=0; i--)
 			heapify(a, n, i);
@@ -14,7 +16,7 @@ public class HeapSortTest {
 		}
 	}
 
-	private void heapify(int[] a, int n, int i) {
+	private static void heapify(int[] a, int n, int i) {
 		int largest = i;
 		int l = 2*i + 1;
 		int r = 2*i + 2;
@@ -31,11 +33,10 @@ public class HeapSortTest {
 	}
 
 	public static void main(String[] args) {
-		HeapSortTest sort = new HeapSortTest();
-
 		int[] array = new int[]{43, 54, 21, 12, 58, 76, 38, 26, 15, 66};
-		sort.sort(array);
-		for(int value : array)
-			System.out.print(value + "\t");
+
+		sort(array);
+
+		System.out.println(Arrays.toString(array));
 	}
 }
