@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class InsertAfterNNodeFromEndLinkedList {
-	public Node insertAfterNNodeFromEnd(Node head, Node newNode, int n) {
+	private static Node insertAfterNNodeFromEnd(Node head, Node newNode, int n) {
 		int i = 0;
 		Node fastNode = head;
 		while(i != n) {
@@ -24,17 +22,16 @@ public class InsertAfterNNodeFromEndLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		Node head = linkedList.getHead();
-		linkedList.traverse(head);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		InsertAfterNNodeFromEndLinkedList list = new InsertAfterNNodeFromEndLinkedList();
-		head = list.insertAfterNNodeFromEnd(head, linkedList.createNode(25), 3);
-		linkedList.traverse(head);
+		head = insertAfterNNodeFromEnd(head, Node.createNode(25), 3);
+		SinglyLinkedList.traverse(head);
 	}
 }
