@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class AddTwoNumbersInLinkedList {
-	public Node addNumbers(Node head1, Node head2) {
+	private static Node addNumbers(Node head1, Node head2) {
 		int number = 0;
 		int counter = 0;
 		Node temp;
@@ -21,10 +19,10 @@ public class AddTwoNumbersInLinkedList {
 		Node head = null;
 		while(number != 0) {
 			if(head == null)
-				head = new LinkedListDemo().createNode(number%10);
+				head = Node.createNode(number%10);
 			else {
 				for(temp=head; temp.next!=null; temp=temp.next);
-				temp.next = new LinkedListDemo().createNode(number%10);
+				temp.next = Node.createNode(number%10);
 			}
 			number = number / 10;
 		}
@@ -33,20 +31,23 @@ public class AddTwoNumbersInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(5);
-		linkedList.insertData(6);
-		linkedList.insertData(3);
-		Node head1 = linkedList.getHead();
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head1 = linkedList
+				.insertData(5)
+				.insertData(6)
+				.insertData(3)
+				.getHead();
+		System.out.println(linkedList);
 
-		linkedList = new LinkedListDemo();
-		linkedList.insertData(8);
-		linkedList.insertData(4);
-		linkedList.insertData(2);
-		Node head2 = linkedList.getHead();
+		linkedList = new SinglyLinkedList();
+		Node head2 = linkedList
+				.insertData(8)
+				.insertData(4)
+				.insertData(2)
+				.getHead();
+		System.out.println(linkedList);
 
-		AddTwoNumbersInLinkedList add = new AddTwoNumbersInLinkedList();
-		Node head = add.addNumbers(head1, head2);
-		linkedList.traverse(head);
+		Node head = addNumbers(head1, head2);
+		SinglyLinkedList.traverse(head);
 	}
 }
