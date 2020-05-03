@@ -1,64 +1,76 @@
 package com.dataStructure.linkedList.problems;
 
-public class LinkedListDemo {
-	public class Node {
-		public int data;
-		public Node next;
+class Node {
+	public int data;
+	public Node next;
 
-		public Node(int data) {
-			this.data = data;
-		}
-
-		@Override
-		public String toString() {
-			return "Node [data=" + data + ", next=" + next + "]";
-		}
+	public Node(int data) {
+		this.data = data;
 	}
 
-	private Node head;
+	public int getData() {
+		return data;
+	}
 
-	public Node createNode(int data) {
+	public static Node createNode(int data) {
 		return new Node(data);
 	}
+
+	@Override
+	public String toString() {
+		return "Node [data=" + data + ", next=" + next + "]";
+	}
+}
+
+public class SinglyLinkedList {
+	private Node head;
 
 	public Node getHead() {
 		return head;
 	}
 
-	public void insertData(int data) {
+	public SinglyLinkedList insertData(int data) {
 		Node node = new Node(data);
 
-		if(head == null)
+		if (head == null)
 			head = node;
 		else {
 			Node temp;
-			for(temp=head; temp.next!=null; temp=temp.next);
+			for (temp=head; temp.next!=null; temp=temp.next);
 			temp.next = node;
 		}
+
+		return this;
 	}
 
 	public void traverse() {
-		for(Node temp=head; temp!=null; temp=temp.next)
-			System.out.print(temp.data+"\t");
-		System.out.println();
+		traverse(head);
 	}
 
-	public void traverse(Node node) {
-		for(Node temp=node; temp!=null; temp=temp.next)
-			System.out.print(temp.data+"\t");
-		System.out.println();
+	public static void traverse(Node node) {
+		System.out.println(traverseData(node));
 	}
 
-	public void test() {
-		insertData(10);
-		insertData(20);
-		insertData(30);
-		insertData(40);
-		insertData(50);
-		traverse();
+	private static String traverseData(Node node) {
+		String value = "";
+
+		for (Node temp=node; temp!=null; temp=temp.next)
+			value += temp.data + "  -->  ";
+		value += "null\n";
+
+		return value;
+	}
+
+	@Override
+	public String toString() {
+		return traverseData(head);
 	}
 
 	public static void main(String[] args) {
-		new LinkedListDemo().test();
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		linkedList.insertData(10).insertData(20).insertData(30).insertData(40).insertData(50);
+
+		linkedList.traverse();
+		System.out.println(linkedList);
 	}
 }
