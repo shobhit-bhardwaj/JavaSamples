@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class DeleteLastOccurenceElement {
-	public Node delete(Node head, int data) {
+	private static Node delete(Node head, int data) {
 		Node temp = head;
 		Node node = null;
 		while(temp != null) {
@@ -27,20 +25,20 @@ public class DeleteLastOccurenceElement {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		linkedList.insertData(30);
-		linkedList.insertData(60);
-		linkedList.insertData(70);
-		Node head = linkedList.getHead();
-		linkedList.traverse(head);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList
+				.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.insertData(30)
+				.insertData(60)
+				.insertData(70)
+				.getHead();
+		System.out.println(linkedList);
 
-		DeleteLastOccurenceElement deleteElement = new DeleteLastOccurenceElement();
-		head = deleteElement.delete(head, 30);
-		linkedList.traverse(head);
+		head = delete(head, 30);
+		SinglyLinkedList.traverse(head);
 	}
 }
