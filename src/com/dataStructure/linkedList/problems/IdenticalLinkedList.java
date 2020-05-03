@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class IdenticalLinkedList {
-	public boolean identical(Node head1, Node head2) {
+	private static boolean identical(Node head1, Node head2) {
 		while(head1 != null && head2 != null) {
 			if(head1.data != head2.data)
 				return false;
@@ -20,24 +18,25 @@ public class IdenticalLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		Node head1 = linkedList.getHead();
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head1 = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		Node head2 = linkedList.getHead();
+		linkedList = new SinglyLinkedList();
+		Node head2 = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		IdenticalLinkedList identicalList = new IdenticalLinkedList();
-		boolean isIdentical = identicalList.identical(head1, head2);
-		System.out.println("Is Identical List - "+isIdentical);
+		boolean isIdentical = identical(head1, head2);
+		System.out.println("Is Identical List - " + isIdentical);
 	}
 }
