@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class MakeMiddleNodeHeadLinkedList {
-	public Node makeMiddleNodeHead(Node head) {
+	private static Node makeMiddleNodeHead(Node head) {
 		Node prev = null;
 		Node node = head;
 		Node secondNode = head;
@@ -21,17 +19,16 @@ public class MakeMiddleNodeHeadLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		Node head = linkedList.getHead();
-		linkedList.traverse(head);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		MakeMiddleNodeHeadLinkedList list = new MakeMiddleNodeHeadLinkedList();
-		head = list.makeMiddleNodeHead(head);
-		linkedList.traverse(head);
+		head = makeMiddleNodeHead(head);
+		SinglyLinkedList.traverse(head);
 	}
 }
