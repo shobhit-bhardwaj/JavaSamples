@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class NthNodeInLinkedList {
-	public Node nthNode(Node node, int n) {
+	private static Node nthNode(Node node, int n) {
 		Node temp;
 		int counter = 1;
 		for(temp=node; temp.next!=null; temp=temp.next) {
@@ -15,7 +13,7 @@ public class NthNodeInLinkedList {
 		return null;
 	}
 
-	public Node nthNodeFromLast(Node node, int n) {
+	private static Node nthNodeFromLast(Node node, int n) {
 		Node temp1;
 		int counter = 1;
 		for(temp1=node; temp1.next!=null; temp1=temp1.next) {
@@ -34,19 +32,19 @@ public class NthNodeInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		Node head = linkedList.getHead();
+		Node node = nthNode(head, 3);
+		System.out.println("Nth Node - " + node.data);
 
-		NthNodeInLinkedList nthNode = new NthNodeInLinkedList();
-		Node node = nthNode.nthNode(head, 3);
-		System.out.println("Nth Node - "+node);
-		node = nthNode.nthNodeFromLast(head, 4);
-		System.out.println("Nth Node From Last - "+node);
+		node = nthNodeFromLast(head, 4);
+		System.out.println("Nth Node From Last - " + node.data);
 	}
 }
