@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class MoveLastElementToFirst {
-	public Node moveLastToFirst(Node node) {
+	private static Node moveLastToFirst(Node node) {
 		Node head = node;
 		while(node.next.next != null)
 			node = node.next;
@@ -15,16 +13,16 @@ public class MoveLastElementToFirst {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		Node head = linkedList.getHead();
-		MoveLastElementToFirst move = new MoveLastElementToFirst();
-		head = move.moveLastToFirst(head);
-		linkedList.traverse(head);
+		head = moveLastToFirst(head);
+		SinglyLinkedList.traverse(head);
 	}
 }
