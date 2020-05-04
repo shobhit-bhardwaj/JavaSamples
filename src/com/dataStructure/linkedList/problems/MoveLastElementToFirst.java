@@ -1,14 +1,18 @@
 package com.dataStructure.linkedList.problems;
 
 public class MoveLastElementToFirst {
-	private static Node moveLastToFirst(Node node) {
-		Node head = node;
-		while(node.next.next != null)
+	private static Node moveLastToFirst(Node head) {
+		Node node = head;
+		Node prev = null;
+		while(node.next != null) {
+			prev = node;
 			node = node.next;
-		Node last = node.next;
-		node.next = null;
-		last.next = head;
-		head = last;
+		}
+
+		node.next = head;
+		prev.next = null;
+		head = node;
+
 		return head;
 	}
 
