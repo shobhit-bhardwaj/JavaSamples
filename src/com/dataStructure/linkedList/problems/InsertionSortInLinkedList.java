@@ -1,12 +1,10 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class InsertionSortInLinkedList {
 	private static Node mainHead = null;
 	private static Node sortHead = null;
 
-	public Node insertionSort(Node head) {
+	private static Node insertionSort(Node head) {
 		Node current = head;
 
 		while(current != null) {
@@ -18,7 +16,7 @@ public class InsertionSortInLinkedList {
 		return sortHead;
 	}
 
-	public void sortNode(Node newNode) {
+	private static void sortNode(Node newNode) {
 		newNode.next = null;
 
 		if(sortHead == null) {
@@ -49,17 +47,16 @@ public class InsertionSortInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(20);
-		linkedList.insertData(10);
-		linkedList.insertData(40);
-		linkedList.insertData(30);
-		linkedList.insertData(50);
-		mainHead = linkedList.getHead();
-		linkedList.traverse(mainHead);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		mainHead = linkedList.insertData(20)
+				.insertData(10)
+				.insertData(40)
+				.insertData(30)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		InsertionSortInLinkedList insertionSort = new InsertionSortInLinkedList();
-		sortHead = insertionSort.insertionSort(mainHead);
-		linkedList.traverse(sortHead);
+		sortHead = insertionSort(mainHead);
+		SinglyLinkedList.traverse(sortHead);
 	}
 }
