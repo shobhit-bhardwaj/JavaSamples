@@ -1,50 +1,51 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class SwapNodeInLinkedList {
-	public void swapNodes(Node node, int data1, int data2) {
-		if(data1 == data2)
-			return;
-		else {
-			Node currX = node;
-			Node prevX = null;
-			while(currX != null && currX.data != data1) {
-				prevX = currX;
-				currX = currX.next;
-			}
-
-			Node currY = node;
-			Node prevY = null;
-			while(currY != null && currY.data != data2) {
-				prevY = currY;
-				currY = currY.next;
-			}
-
-			if(prevX != null)
-				prevX.next = currY;
-			if(prevY != null)
-				prevY.next = currX;
-
-			Node temp = currX.next;
-			currX.next = currY.next;
-			currY.next = temp;
+	private static Node swapNodes(Node head, int x, int y) {
+		Node prevX = null;
+		Node currX = head;
+		while(currX != null && currX.data != x) {
+			prevX = currX;
+			currX = currX.next;
 		}
+
+		Node prevY = null;
+		Node currY = head;
+		while(currY != null && currY.data != y) {
+			prevY = currY;
+			currY = currY.next;
+		}
+
+		if(prevX != null)
+			prevX.next = currY;
+		else
+			head = currY;
+
+		if(prevY != null)
+			prevY.next = currX;
+		else
+			head = currX;
+
+		Node temp = currX.next;
+		currX.next = currY.next;
+		currY.next = temp;
+
+		return head;
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		linkedList.traverse();
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.insertData(60)
+				.insertData(70)
+				.getHead();
+		System.out.println(linkedList);
 
-		Node head = linkedList.getHead();
-
-		SwapNodeInLinkedList swap = new SwapNodeInLinkedList();
-		swap.swapNodes(head, 20, 40);
-		linkedList.traverse();
+		swapNodes(head, 40, 60);
+		SinglyLinkedList.traverse(head);
 	}
 }
