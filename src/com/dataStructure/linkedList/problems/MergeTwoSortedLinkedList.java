@@ -1,10 +1,8 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class MergeTwoSortedLinkedList {
-	public Node mergeList(Node node1, Node node2) {
-		Node head = new LinkedListDemo().createNode(0);
+	private static Node mergeList(Node node1, Node node2) {
+		Node head = Node.createNode(0);
 		Node result = head;
 
 		while(node1 != null && node2 != null) {
@@ -27,23 +25,24 @@ public class MergeTwoSortedLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(70);
-		linkedList.insertData(80);
-		Node head1 = linkedList.getHead();
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head1 = linkedList.insertData(10)
+				.insertData(30)
+				.insertData(40)
+				.insertData(70)
+				.insertData(80)
+				.getHead();
+		System.out.println(linkedList);
 
-		linkedList = new LinkedListDemo();
-		linkedList.insertData(20);
-		linkedList.insertData(50);
-		linkedList.insertData(60);
-		linkedList.insertData(100);
-		Node head2 = linkedList.getHead();
+		linkedList = new SinglyLinkedList();
+		Node head2 = linkedList.insertData(20)
+				.insertData(50)
+				.insertData(60)
+				.insertData(100)
+				.getHead();
+		System.out.println(linkedList);
 
-		MergeTwoSortedLinkedList merge = new MergeTwoSortedLinkedList();
-		Node head = merge.mergeList(head1, head2);
-		linkedList.traverse(head);
+		Node head = mergeList(head1, head2);
+		SinglyLinkedList.traverse(head);
 	}
 }
