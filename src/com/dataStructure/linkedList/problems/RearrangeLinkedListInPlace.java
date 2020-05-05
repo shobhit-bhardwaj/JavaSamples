@@ -14,6 +14,7 @@ public class RearrangeLinkedListInPlace {
 			second.next = null;
 			node = temp;
 		}
+
 		return head;
 	}
 
