@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class RearrangeLinkedListEvenOddPosition {
-	public Node rearrange(Node head) {
+	private static Node rearrange(Node head) {
 		Node odd = head;
 		Node even = head.next;
 		Node evenFirst = even;
@@ -19,18 +17,17 @@ public class RearrangeLinkedListEvenOddPosition {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		//linkedList.insertData(60);
-		Node head = linkedList.getHead();
-		linkedList.traverse(head);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.insertData(60)
+				.getHead();
+		System.out.println(linkedList);
 
-		RearrangeLinkedListEvenOddPosition rearrangeLinkedList = new RearrangeLinkedListEvenOddPosition();
-		head = rearrangeLinkedList.rearrange(head);
-		linkedList.traverse(head);
+		head = rearrange(head);
+		SinglyLinkedList.traverse(head);
 	}
 }
