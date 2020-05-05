@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class SearchInLinkedList {
-	public Node searchDataIterative(Node node, int key) {
+	private static Node searchDataIterative(Node node, int key) {
 		Node temp;
 		for(temp=node; temp.next!=null; temp=temp.next) {
 			if(temp.data == key)
@@ -13,7 +11,7 @@ public class SearchInLinkedList {
 		return null;
 	}
 
-	public Node searchDataRecursive(Node node, int key) {
+	private static Node searchDataRecursive(Node node, int key) {
 		if(node == null)
 			return null;
 
@@ -24,19 +22,19 @@ public class SearchInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		Node head = linkedList.getHead();
+		Node node = searchDataIterative(head, 40);
+		System.out.println("Search Iterative - " + node.getData());
 
-		SearchInLinkedList search = new SearchInLinkedList();
-		Node node = search.searchDataIterative(head, 40);
-		System.out.println("Search Iterative - "+node);
-		node = search.searchDataRecursive(head, 30);
-		System.out.println("Search Recursive - "+node);
+		node = searchDataRecursive(head, 30);
+		System.out.println("Search Recursive - " + node.getData());
 	}
 }
