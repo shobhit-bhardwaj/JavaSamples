@@ -1,34 +1,35 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class RemoveDuplicateInSortedLinkedList {
-	public void removeDuplicate(Node node) {
-		Node prev = node;
+	private static Node removeDuplicate(Node head) {
+		Node node = head;
 		while(node.next != null) {
-			node = node.next;
-			if(prev.data == node.data)
-				prev.next = node.next;
-			prev = node;
+			if(node.data == node.next.data)
+				node.next = node.next.next;
+			else
+				node = node.next;
 		}
+
+		return head;
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		linkedList.insertData(60);
-		linkedList.insertData(60);
-		linkedList.insertData(70);
-		linkedList.insertData(70);
-		Node head = linkedList.getHead();
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(30)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.insertData(60)
+				.insertData(60)
+				.insertData(70)
+				.insertData(70)
+				.getHead();
+		System.out.println(linkedList);
 
-		RemoveDuplicateInSortedLinkedList remove = new RemoveDuplicateInSortedLinkedList();
-		remove.removeDuplicate(head);
-		linkedList.traverse(head);
+		head = removeDuplicate(head);
+		SinglyLinkedList.traverse(head);
 	}
 }
