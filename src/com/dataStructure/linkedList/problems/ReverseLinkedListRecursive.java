@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class ReverseLinkedListRecursive {
-	public Node reverse(Node node) {
+	private static Node reverse(Node node) {
 		if(node.next == null)
 			return node;
 
@@ -11,21 +9,21 @@ public class ReverseLinkedListRecursive {
 		node.next = null;
 		Node temp = reverse(nextNode);
 		nextNode.next = node;
+
 		return temp;
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		Node head = linkedList.getHead();
-		linkedList.traverse(head);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		ReverseLinkedListRecursive reverseLinkedListRecursive = new ReverseLinkedListRecursive();
-		head = reverseLinkedListRecursive.reverse(head);
-		linkedList.traverse(head);
+		head = reverse(head);
+		SinglyLinkedList.traverse(head);
 	}
 }
