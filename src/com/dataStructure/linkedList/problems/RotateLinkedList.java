@@ -1,9 +1,7 @@
 package com.dataStructure.linkedList.problems;
 
-import com.dataStructure.linkedList.problems.LinkedListDemo.Node;
-
 public class RotateLinkedList {
-	public Node rotate(Node head, int k) {
+	private static Node rotate(Node head, int k) {
 		Node newHead = null;
 
 		int counter = 1;
@@ -25,17 +23,16 @@ public class RotateLinkedList {
 	}
 
 	public static void main(String[] args) {
-		LinkedListDemo linkedList = new LinkedListDemo();
-		linkedList.insertData(10);
-		linkedList.insertData(20);
-		linkedList.insertData(30);
-		linkedList.insertData(40);
-		linkedList.insertData(50);
-		Node head = linkedList.getHead();
-		linkedList.traverse(head);
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		Node head = linkedList.insertData(10)
+				.insertData(20)
+				.insertData(30)
+				.insertData(40)
+				.insertData(50)
+				.getHead();
+		System.out.println(linkedList);
 
-		RotateLinkedList rotateLinkedList = new RotateLinkedList();
-		head = rotateLinkedList.rotate(head, 3);
-		linkedList.traverse(head);
+		head = rotate(head, 3);
+		SinglyLinkedList.traverse(head);
 	}
 }
