@@ -3,45 +3,58 @@ package com.dataStructure.linkedList.problems;
 public class SegregateEvenOddNodeLinkedList {
 	private static Node segregateEvenOdd(Node head) {
 		Node odd = null;
-		Node current = head;
+
 		Node prev = null;
-		while(current != null) {
-			if(current.data%2 == 1) {
-				if(odd == null) {
-					odd = Node.createNode(current.data);
-				} else {
-					Node temp = odd;
-					while(temp.next != null)
-						temp = temp.next;
-					temp.next = Node.createNode(current.data);
-				}
+		Node node = head;
+
+		while(node != null ) {
+			if(node.data%2 == 1) {
 				if(prev == null)
 					head = head.next;
-				else {
+				else
 					prev.next = prev.next.next;
+
+				Node temp = node;
+				node = node.next;
+				temp.next = null;
+
+				if(odd == null)
+					odd = temp;
+				else {
+					Node traverse;
+					for(traverse=odd; traverse.next!=null; traverse=traverse.next);
+					traverse.next = temp;
 				}
+			} else {
+				prev = node;
+				node = node.next;
 			}
-			prev = current;
-			current = current.next;
 		}
-		Node temp = head;
-		while(temp.next != null)
-			temp = temp.next;
-		temp.next = odd;
+
+		node = head;
+		while(node.next != null)
+			node = node.next;
+		node.next = odd;
 
 		return head;
 	}
 
 	public static void main(String[] args) {
 		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList.insertData(4)
-				.insertData(1)
+		Node head = linkedList.insertData(1)
 				.insertData(2)
+				.insertData(3)
+				.insertData(3)
+				.insertData(4)
+				.insertData(4)
+				.insertData(5)
+				.insertData(6)
 				.insertData(7)
 				.insertData(8)
-				.insertData(12)
-				.insertData(11)
-				.insertData(14)
+				.insertData(9)
+				.insertData(9)
+				.insertData(10)
+				.insertData(10)
 				.getHead();
 		System.out.println(linkedList);
 
