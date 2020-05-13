@@ -1,27 +1,34 @@
 package com.dataStructure.linkedList.problems;
 
 public class MergeTwoSortedLinkedList {
-	private static Node mergeList(Node node1, Node node2) {
-		Node head = Node.createNode(0);
-		Node result = head;
-
-		while(node1 != null && node2 != null) {
-			if(node1.data < node2.data) {
-				result.next = node1;
-				node1 = node1.next;
-			} else {
-				result.next = node2;
-				node2 = node2.next;
-			}
-			result = result.next;
+	private static Node mergeList(Node head1, Node head2) {
+		Node head = null;
+		if(head1.data < head2.data) {
+			head = head1;
+			head1 = head1.next;
+		} else {
+			head = head2;
+			head2 = head2.next;
 		}
 
-		if(node1 != null)
-			result.next = node1;
-		if(node2 != null)
-			result.next = node2;
+		Node node = head;
+		while(head1 != null && head2 != null) {
+			if(head1.data < head2.data) {
+				node.next = head1;
+				head1 = head1.next;
+			} else {
+				node.next = head2;
+				head2 = head2.next;
+			}
+			node = node.next;
+		}
 
-		return head.next;
+		if(head1 != null)
+			node.next = head1;
+		if(head2 != null)
+			node.next = head2;
+
+		return head;
 	}
 
 	public static void main(String[] args) {
