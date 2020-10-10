@@ -14,17 +14,17 @@ public class RecursiveTraverseInPrePostOrderBST {
 		if(node == null)
 			return;
 
-		preorder(node.left);
+		inorder(node.left);
 		System.out.print(node.data + "\t");
-		preorder(node.right);
+		inorder(node.right);
 	}
 
 	private static void postorder(Node node) {
 		if(node == null)
 			return;
 
-		preorder(node.left);
-		preorder(node.right);
+		postorder(node.left);
+		postorder(node.right);
 		System.out.print(node.data + "\t");
 	}
 
