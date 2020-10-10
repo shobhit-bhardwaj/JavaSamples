@@ -1,17 +1,32 @@
 package com.dataStructure.tree;
 
 public class SearchInBST {
-	private static Node search(Node node, int key) {
+	private static Node searchRecursive(Node node, int key) {
 		if(node == null)
 			return null;
-		else {
-			if(node.data == key)
-				return node;
+
+		if(node.data > key)
+			return searchRecursive(node.left, key);
+		else if(node.data < key)
+			return searchRecursive(node.right, key);
+		else
+			return node;
+	}
+
+	private static Node searchIterative(Node node, int key) {
+		if(node == null)
+			return null;
+
+		while(node != null) {
+			if(node.data > key)
+				node = node.left;
 			else if(node.data < key)
-				return search(node.right, key);
+				node = node.right;
 			else
-				return search(node.left, key);
+				return node;
 		}
+
+		return null;
 	}
 
 	public static void main(String[] args) {
@@ -23,7 +38,10 @@ public class SearchInBST {
 				.insertData(15)
 				.getRoot();
 
-		Node node = search(root, 20);
+		Node node = searchRecursive(root, 20);
+		System.out.println(node);
+
+		node = searchIterative(root, 5);
 		System.out.println(node);
 	}
 }
