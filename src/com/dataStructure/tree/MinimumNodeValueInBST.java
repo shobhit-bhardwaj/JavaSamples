@@ -1,11 +1,24 @@
 package com.dataStructure.tree;
 
 public class MinimumNodeValueInBST {
-	private static Node getMinimumValueNode(Node root) {
+	private static Node getMinimumValueRecursive(Node root) {
+		if(root == null)
+			return null;
+
 		if(root.left == null)
 			return root;
 
-		return getMinimumValueNode(root.left);
+		return getMinimumValueRecursive(root.left);
+	}
+
+	private static Node getMinimumValueIterative(Node root) {
+		if(root == null)
+			return null;
+
+		while(root.left != null)
+			root = root.left;
+
+		return root;
 	}
 
 	public static void main(String[] args) {
@@ -17,7 +30,10 @@ public class MinimumNodeValueInBST {
 				.insertData(15)
 				.getRoot();
 
-		Node minNode = getMinimumValueNode(root);
-		System.out.println("Minimum Node - " + minNode.getData());
+		Node minNode = getMinimumValueRecursive(root);
+		System.out.println("Minimum Node Recursive - " + minNode.getData());
+
+		minNode = getMinimumValueIterative(root);
+		System.out.println("Minimum Node Iterative - " + minNode.getData());
 	}
 }
