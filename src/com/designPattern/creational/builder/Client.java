@@ -1,7 +1,5 @@
 package com.designPattern.creational.builder;
 
-import com.designPattern.creational.builder.Vehicle;
-
 public class Client {
 	public static void main(String[] args) {
 		Vehicle scooter = new Vehicle.VehicleBuilder(2, 2)
