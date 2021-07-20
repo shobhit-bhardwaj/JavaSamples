@@ -27,21 +27,19 @@ public class AddTwoNumbersInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head1 = linkedList
+		Node head1 = new SinglyLinkedList()
 				.insertData(5)
 				.insertData(6)
 				.insertData(3)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head1);
 
-		linkedList = new SinglyLinkedList();
-		Node head2 = linkedList
+		Node head2 = new SinglyLinkedList()
 				.insertData(8)
 				.insertData(4)
 				.insertData(2)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head2);
 
 		Node head = addNumbers(head1, head2);
 		SinglyLinkedList.traverse(head);
