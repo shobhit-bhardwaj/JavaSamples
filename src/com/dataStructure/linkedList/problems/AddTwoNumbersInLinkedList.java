@@ -2,32 +2,28 @@ package com.dataStructure.linkedList.problems;
 
 public class AddTwoNumbersInLinkedList {
 	private static Node addNumbers(Node head1, Node head2) {
-		int number = 0;
 		int counter = 0;
-		Node temp;
-		for(temp=head1; temp!=null; temp=temp.next) {
-			number += temp.data*(Math.pow(10, counter));
-			counter++;
+		int power = 0;
+		for(Node temp=head1; temp!=null; temp=temp.next) {
+			counter += temp.data*(Math.pow(10, power));
+			power++;
 		}
 
-		counter = 0;
-		for(temp=head2; temp!=null; temp=temp.next) {
-			number += temp.data*(Math.pow(10, counter));
-			counter++;
+		power = 0;
+		for(Node temp=head2; temp!=null; temp=temp.next) {
+			counter += temp.data*(Math.pow(10, power));
+			power++;
 		}
 
-		Node head = null;
-		while(number != 0) {
-			if(head == null)
-				head = Node.createNode(number%10);
-			else {
-				for(temp=head; temp.next!=null; temp=temp.next);
-				temp.next = Node.createNode(number%10);
-			}
-			number = number / 10;
+		int data = -1;
+		SinglyLinkedList result = new SinglyLinkedList();
+		while(counter != 0) {
+			data = counter % 10;
+			counter = counter/10;
+			result.insertData(data);
 		}
 
-		return head;
+		return result.getHead();
 	}
 
 	public static void main(String[] args) {
