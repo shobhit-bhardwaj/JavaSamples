@@ -24,8 +24,7 @@ public class AlternateSplitLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList.insertData(1)
+		Node head = new SinglyLinkedList().insertData(1)
 				.insertData(2)
 				.insertData(3)
 				.insertData(4)
@@ -34,7 +33,7 @@ public class AlternateSplitLinkedList {
 				.insertData(7)
 				//.insertData(8)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head);
 
 		alternateSplit(head);
 	}
