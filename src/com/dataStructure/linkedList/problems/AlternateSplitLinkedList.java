@@ -8,14 +8,15 @@ public class AlternateSplitLinkedList {
 		Node node1 = head1;
 		Node node2 = head2;
 
-		while(node1 != null && node1.next != null && node2 != null) {
+		while(node1 != null && node1.next != null) {
 			node1.next = node1.next.next;
 			node1 = node1.next;
 
-			if(node2.next != null) {
-				node2.next = node2.next.next;
-				node2 = node2.next;
-			}
+			if(node1 == null)
+				break;
+
+			node2.next = node2.next.next;
+			node2 = node2.next;
 		}
 
 		SinglyLinkedList.traverse(head1);
@@ -31,7 +32,7 @@ public class AlternateSplitLinkedList {
 				.insertData(5)
 				.insertData(6)
 				.insertData(7)
-				//.insertData()
+				//.insertData(8)
 				.getHead();
 		System.out.println(linkedList);
 
