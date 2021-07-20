@@ -2,21 +2,19 @@ package com.dataStructure.linkedList.problems;
 
 public class CountRotationInSortedLinkedList {
 	private static Node countRotation(Node head) {
-		Node node = head;
+		int rotation = 0;
 
-		int k = 1;
+		Node temp;
 		Node newHead = null;
-		while(node.next != null) {
-			k++;
-			if(node.data > node.next.data)
-				newHead = node;
-
-			node = node.next;
+		for(temp=head; temp.next!=null; temp=temp.next) {
+			rotation++;
+			if(temp.data > temp.next.data) {
+				newHead = temp;
+				System.out.println("Rotation - " + rotation);
+			}
 		}
 
-		System.out.println("Rotation No - " + k);
-
-		node.next = head;
+		temp.next = head;
 		head = newHead.next;
 		newHead.next = null;
 
@@ -24,15 +22,14 @@ public class CountRotationInSortedLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList
+		Node head = new SinglyLinkedList()
 				.insertData(13)
 				.insertData(18)
 				.insertData(5)
 				.insertData(9)
 				.insertData(11)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head);
 
 		head = countRotation(head);
 		SinglyLinkedList.traverse(head);
