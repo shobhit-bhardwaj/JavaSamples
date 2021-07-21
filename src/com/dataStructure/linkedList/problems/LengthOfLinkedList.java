@@ -2,8 +2,13 @@ package com.dataStructure.linkedList.problems;
 
 public class LengthOfLinkedList {
 	private static int length(Node head) {
+		//	Using for loop
 		int length = 0;
+		for(Node temp=head; temp!=null; temp=temp.next)
+			length++;
 
+		//	Using while loop
+		length = 0;
 		Node node = head;
 		while(node != null) {
 			node = node.next;
@@ -14,14 +19,14 @@ public class LengthOfLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList.insertData(10)
+		Node head = new SinglyLinkedList()
+				.insertData(10)
 				.insertData(20)
 				.insertData(30)
 				.insertData(40)
 				.insertData(50)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head);
 
 		int length = length(head);
 		System.out.println("Length of List - " + length);
