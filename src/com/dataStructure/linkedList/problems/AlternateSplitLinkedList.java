@@ -24,7 +24,8 @@ public class AlternateSplitLinkedList {
 	}
 
 	public static void main(String[] args) {
-		Node head = new SinglyLinkedList().insertData(1)
+		Node head = new SinglyLinkedList()
+				.insertData(1)
 				.insertData(2)
 				.insertData(3)
 				.insertData(4)
