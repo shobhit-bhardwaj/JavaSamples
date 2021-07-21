@@ -47,14 +47,14 @@ public class InsertionSortInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		mainHead = linkedList.insertData(20)
+		mainHead = new SinglyLinkedList()
+				.insertData(20)
 				.insertData(10)
 				.insertData(40)
 				.insertData(30)
 				.insertData(50)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(mainHead);
 
 		sortHead = insertionSort(mainHead);
 		SinglyLinkedList.traverse(sortHead);
