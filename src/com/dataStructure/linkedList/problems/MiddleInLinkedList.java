@@ -13,7 +13,8 @@ public class MiddleInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		Node head = new SinglyLinkedList().insertData(10)
+		Node head = new SinglyLinkedList()
+				.insertData(10)
 				.insertData(20)
 				.insertData(30)
 				.insertData(40)
