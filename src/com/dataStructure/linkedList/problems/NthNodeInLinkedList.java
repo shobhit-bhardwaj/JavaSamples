@@ -1,45 +1,37 @@
 package com.dataStructure.linkedList.problems;
 
 public class NthNodeInLinkedList {
-	private static Node nthNode(Node node, int n) {
-		Node temp;
-		int counter = 1;
-		for(temp=node; temp.next!=null; temp=temp.next) {
-			if(counter == n)
-				return temp;
-			counter++;
-		}
+	private static Node nthNode(Node head, int n) {
+		Node node = head;
+		for(int i=0; i<n-1; i++)
+			node = node.next;
 
-		return null;
+		return node;
 	}
 
-	private static Node nthNodeFromLast(Node node, int n) {
-		Node temp1;
-		int counter = 1;
-		for(temp1=node; temp1.next!=null; temp1=temp1.next) {
-			if(counter == n)
-				break;
-			counter++;
+	private static Node nthNodeFromLast(Node head, int n) {
+		Node fast = head;
+		for(int i=0; i<n-1; i++)
+			fast = fast.next;
+
+		Node slow = head;
+		for(Node temp=fast; temp.next!=null; temp=temp.next) {
+			fast = fast.next;
+			slow = slow.next;
 		}
 
-		Node temp2 = node;
-		while(temp1.next!=null) {
-			temp1 = temp1.next;
-			temp2 = temp2.next;
-		}
-
-		return temp2;
+		return slow;
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList.insertData(10)
+		Node head = new SinglyLinkedList()
+				.insertData(10)
 				.insertData(20)
 				.insertData(30)
 				.insertData(40)
 				.insertData(50)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head);
 
 		Node node = nthNode(head, 3);
 		System.out.println("Nth Node - " + node.data);
