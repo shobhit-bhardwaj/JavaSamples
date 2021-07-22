@@ -90,8 +90,8 @@ public class LoopInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList.insertData(10)
+		Node head = new SinglyLinkedList()
+				.insertData(10)
 				.insertData(20)
 				.insertData(30)
 				.insertData(40)
@@ -101,7 +101,7 @@ public class LoopInLinkedList {
 				.insertData(80)
 				.insertData(90)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head);
 
 		head = createLoopInLinkedList(head);
 
