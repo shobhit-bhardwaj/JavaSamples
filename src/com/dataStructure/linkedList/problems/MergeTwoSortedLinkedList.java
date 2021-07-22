@@ -32,22 +32,22 @@ public class MergeTwoSortedLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head1 = linkedList.insertData(10)
+		Node head1 = new SinglyLinkedList()
+				.insertData(10)
 				.insertData(30)
 				.insertData(40)
 				.insertData(70)
 				.insertData(80)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head1);
 
-		linkedList = new SinglyLinkedList();
-		Node head2 = linkedList.insertData(20)
+		Node head2 = new SinglyLinkedList()
+				.insertData(20)
 				.insertData(50)
 				.insertData(60)
 				.insertData(100)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head2);
 
 		Node head = mergeList(head1, head2);
 		SinglyLinkedList.traverse(head);
