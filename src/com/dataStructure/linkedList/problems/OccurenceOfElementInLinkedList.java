@@ -2,9 +2,17 @@ package com.dataStructure.linkedList.problems;
 
 public class OccurenceOfElementInLinkedList {
 	private static int occurenceOfElement(Node head, int key) {
-		Node node = head;
-
 		int occurence = 0;
+
+		//	Using for loop
+		for(Node temp=head; temp!=null; temp=temp.next)
+			if(temp.data == key)
+				occurence++;
+
+		//	Using while loop
+		occurence = 0;
+
+		Node node = head;
 		while(node != null) {
 			if(node.data == key)
 				occurence++;
@@ -16,8 +24,8 @@ public class OccurenceOfElementInLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList.insertData(10)
+		Node head = new SinglyLinkedList()
+				.insertData(10)
 				.insertData(20)
 				.insertData(20)
 				.insertData(30)
@@ -28,7 +36,7 @@ public class OccurenceOfElementInLinkedList {
 				.insertData(60)
 				.insertData(20)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head);
 
 		int occurence = occurenceOfElement(head, 20);
 		System.out.println("Occurence - " + occurence);
