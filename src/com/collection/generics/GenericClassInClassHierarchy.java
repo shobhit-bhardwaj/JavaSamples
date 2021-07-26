@@ -1,43 +1,47 @@
 package com.collection.generics;
 
 public class GenericClassInClassHierarchy {
-	private static class One {
-		public void display() {
-			System.out.println("One Class Called.");
+	private static interface Player {
+		public default void play() {
+			System.out.println("Playing Something.");
 		}
 	}
 
-	private static class Two extends One {
-		public void display() {
-			System.out.println("Two Class Called.");
+	private static class AudioPlayer implements Player {
+		@Override
+		public void play() {
+			System.out.println("Playing by Audio Player.");
 		}
 	}
 
-	private static class Three extends Two {
-		public void display() {
-			System.out.println("Three Class Called.");
+	private static class FMPlayer extends AudioPlayer {
+		@Override
+		public void play() {
+			System.out.println("Playing by FM Player.");
 		}
 	}
 
-	private static class OneFamily<T extends One> {
-		private T value;
+	private static class HomeTheatre<T extends Player> {
+		private T player;
 
-		public OneFamily(T value) {
-			this.value = value;
+		public HomeTheatre(T player) {
+			this.player = player;
 		}
 
-		public void displayInfo() {
-			value.display();
+		public void enjoy() {
+			player.play();
 		}
 	}
 
 	public static void main(String[] args) {
-		OneFamily<One> oneObject = new OneFamily<One>(new One());
-		OneFamily<Two> twoObject = new OneFamily<Two>(new Two());
-		OneFamily<Three> threeObject = new OneFamily<Three>(new Three());
+		HomeTheatre<Player> homeTheatre = new HomeTheatre<>(new Player() {});
 
-		oneObject.displayInfo();
-		twoObject.displayInfo();
-		threeObject.displayInfo();
+		//HomeTheatre<Player> homeTheatre = new HomeTheatre<>(new AudioPlayer());
+		//HomeTheatre<AudioPlayer> homeTheatre = new HomeTheatre<>(new AudioPlayer());
+
+		//HomeTheatre<Player> homeTheatre = new HomeTheatre<>(new FMPlayer());
+		//HomeTheatre<FMPlayer> homeTheatre = new HomeTheatre<>(new FMPlayer());
+
+		homeTheatre.enjoy();
 	}
 }
