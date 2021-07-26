@@ -3,6 +3,7 @@ package com.dataStructure.linkedList.problems;
 public class RemoveDuplicateInSortedLinkedList {
 	private static Node removeDuplicate(Node head) {
 		Node node = head;
+
 		while(node.next != null) {
 			if(node.data == node.next.data)
 				node.next = node.next.next;
@@ -14,8 +15,8 @@ public class RemoveDuplicateInSortedLinkedList {
 	}
 
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
-		Node head = linkedList.insertData(10)
+		Node head = new SinglyLinkedList()
+				.insertData(10)
 				.insertData(20)
 				.insertData(30)
 				.insertData(30)
@@ -27,7 +28,7 @@ public class RemoveDuplicateInSortedLinkedList {
 				.insertData(70)
 				.insertData(70)
 				.getHead();
-		System.out.println(linkedList);
+		SinglyLinkedList.traverse(head);
 
 		head = removeDuplicate(head);
 		SinglyLinkedList.traverse(head);
