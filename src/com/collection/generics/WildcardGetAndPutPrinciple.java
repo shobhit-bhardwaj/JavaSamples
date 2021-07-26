@@ -3,23 +3,25 @@ package com.collection.generics;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Get and Put Principle -
+ * 
+ * When dealing with collections, a common rule for selecting between upper or lower bounded wildcards is PECS.
+ * PECS stands for Producer Extends, Consumer Super.
+ * 
+ * Use an extends wildcard to get values. Producer Extends
+ * Use a super wildcard to add/put values. Consumer Super
+ * 
+ * Example -
+ * Collections.copy(dest, src);
+ * List<? super T> dest
+ * List<? extends T> src
+ * 
+ */
 public class WildcardGetAndPutPrinciple {
 	public static void main(String[] args) {
 		List<Integer> integers = new ArrayList<>();
 		integers.add(1);
-
-		/*
-		 * Get and Put Principle
-		 * 
-		 * Use an extends wildcard to get values.
-		 * Use a super wildcard to put values.
-		 * 
-		 * Example -
-		 * Collections.copy(dest, src);
-		 * List<? super T> dest
-		 * List<? extends T> src
-		 * 
-		 */
 
 		List<? extends Integer> extendsList = integers;
 		//extendsList.add(2);

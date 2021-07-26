@@ -1,4 +1,4 @@
-package com.java7;
+package com.javaNewFeatures.java7;
 
 public class BinaryLiterals {
 	public static void main(String[] args) {
