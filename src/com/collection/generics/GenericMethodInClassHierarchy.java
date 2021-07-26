@@ -1,72 +1,49 @@
 package com.collection.generics;
 
 public class GenericMethodInClassHierarchy {
-	private static class A {
-		public void process() {
-			System.out.println("A");
+	private static interface Player {
+		public default void play() {
+			System.out.println("Playing Something.");
 		}
 	}
 
-	private static class B extends A {
-		/*@Override
-		public void process() {
-			System.out.println("B");
-		}*/
-	}
-
-	private static class C extends A {
+	private static class AudioPlayer implements Player {
 		@Override
-		public void process() {
-			System.out.println("C");
+		public void play() {
+			System.out.println("Playing by Audio Player.");
 		}
 	}
 
-	private static class Z {
-		public void process() {
-			System.out.println("Z");
+	private static class FMPlayer extends AudioPlayer {
+		@Override
+		public void play() {
+			System.out.println("Playing by FM Player.");
 		}
 	}
 
-	/*
-	 * In this generic method, we have to specify the upper bound
-	 * to access the method present in the Top class and inherited
-	 * by all its sub class like process().
-	 * 
-	 * We cannot use super keyword in type declaration because we
-	 * are not sure that this method will be present in all its
-	 * super class.
-	 * 
-	 */
-	public static <T extends A > boolean getValue(T t) {
-		t.process();
-
-		return true;
+	private static class VideoPlayer {
+		public void play() {
+			System.out.println("Playing by Video Player.");
+		}
 	}
 
-	/*
-	 * If we are not using any boundary, then we cannot specify
-	 * any class method like process() in the previous method.
-	 * Now it will only give access to Object class methods.
-	 * 
-	 */
-	public static <T> boolean getValueWithoutBound(T t) {
-		System.out.println(t.toString());
+	public static <T extends Player> void enjoy(T player) {
+		player.play();
+	}
 
-		return true;
+	public static <T> void enjoyUnbounded(T object) {
+		System.out.println(object.getClass().getName());
 	}
 
 	public static void main(String[] args) {
-		A a = new A();
-		getValue(a);
+		//Player player = new Player() {};
+		//AudioPlayer player = new AudioPlayer();
+		FMPlayer player = new FMPlayer();
 
-		B b = new B();
-		getValue(b);
+		enjoy(player);
 
-		C c = new C();
-		getValue(c);
-
-		Z z = new Z();
-		//getValue(z);		//	It Wont Compile, as X and sub class of X can be processed.
-		getValueWithoutBound(z);
+		VideoPlayer videoPlayer = new VideoPlayer();
+		//enjoy(videoPlayer);
+		enjoyUnbounded(videoPlayer);
 	}
 }
