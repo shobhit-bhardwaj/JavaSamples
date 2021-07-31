@@ -1,4 +1,4 @@
-package com.java9;
+package com.javaNewFeatures.java9;
 
 interface IFace {
 	private double getPI() {
@@ -12,8 +12,9 @@ interface IFace {
 
 public class PrivateMethodInterface implements IFace {
 	public static void main(String[] args) {
-		PrivateMethodInterface object = new PrivateMethodInterface();
-		double defaultArea = object.getArea(5);
+		IFace iFace = new IFace() {};
+
+		double defaultArea = iFace.getArea(5);
 		System.out.println("Default Area - " + defaultArea);
 	}
 }
