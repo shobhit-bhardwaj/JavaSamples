@@ -1,4 +1,4 @@
-package com.java7;
+package com.javaNewFeatures.java7;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,7 +7,8 @@ import java.nio.file.Paths;
 
 public class WorkingWithPath {
 	public static void main(String[] args) {
-		Path path = Paths.get("c:\\Temp\\tempFile.txt");
+		String filePath = "c:\\Temp\\tempFile.txt";
+		Path path = Paths.get(filePath);
 
 		System.out.println("Number of Nodes - " + path.getNameCount());
 		System.out.println("File Name - " + path.getFileName());
