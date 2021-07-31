@@ -1,4 +1,4 @@
-package com.java7;
+package com.javaNewFeatures.java7;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -12,7 +12,9 @@ import java.nio.file.WatchService;
 
 public class FileChangeNotifications {
 	public static void main(String[] args) {
-		Path path = Paths.get("C:\\Temps\\");
+		String filePath = "C:\\Temps\\";
+
+		Path path = Paths.get(filePath);
 		WatchService watchService = null;
 		try {
 			watchService = FileSystems.getDefault().newWatchService();
