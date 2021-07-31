@@ -1,4 +1,4 @@
-package com.java7;
+package com.javaNewFeatures.java7;
 
 import java.util.ArrayList;
 import java.util.HashMap;
