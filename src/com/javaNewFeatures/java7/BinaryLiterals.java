@@ -2,10 +2,10 @@ package com.javaNewFeatures.java7;
 
 public class BinaryLiterals {
 	public static void main(String[] args) {
-		int binary = 0b10010;
-		System.out.println(binary);
+		int binaryLiteral = 0b10010;
+		System.out.println("Binary Literal - " + binaryLiteral);
 
-		binary = 10_01_70_365;
-		System.out.println(binary);
+		int integerLiteral = 10_01_70_365;
+		System.out.println("Integer Literal - " + integerLiteral);
 	}
 }
