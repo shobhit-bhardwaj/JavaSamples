@@ -1,4 +1,4 @@
-package com.java7;
+package com.javaNewFeatures.java7;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
