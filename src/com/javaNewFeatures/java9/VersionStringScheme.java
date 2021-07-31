@@ -1,4 +1,4 @@
-package com.java9;
+package com.javaNewFeatures.java9;
 
 public class VersionStringScheme {
 	public static void main(String[] args) {
