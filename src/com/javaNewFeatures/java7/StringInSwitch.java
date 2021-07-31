@@ -1,10 +1,10 @@
-package com.java7;
+package com.javaNewFeatures.java7;
 
 public class StringInSwitch {
 	public static void main(String[] args) {
-		String myChoice = "JAVA";
+		String language = "JAVA";
 
-		switch (myChoice) {
+		switch (language) {
 		case "JAVA":
 		case "CPP":
 		case "C#":
