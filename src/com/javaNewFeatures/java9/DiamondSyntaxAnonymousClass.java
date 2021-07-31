@@ -1,4 +1,4 @@
-package com.java9;
+package com.javaNewFeatures.java9;
 
 abstract class Template<T> {
 	abstract void show(T t);
