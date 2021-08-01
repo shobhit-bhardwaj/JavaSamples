@@ -6,6 +6,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class StreamGroupByExample {
+
 	private static class Employ {
 		private int id;
 		private String name;
