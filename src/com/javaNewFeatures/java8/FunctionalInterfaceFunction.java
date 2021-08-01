@@ -1,4 +1,4 @@
-package com.java8;
+package com.javaNewFeatures.java8;
 
 import java.util.List;
 import java.util.function.Function;
