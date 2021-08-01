@@ -31,28 +31,27 @@ class LRUList {
 			size++;
 		} else {
 			if(size < capecity) {
-				Node temp = head;
-				while(temp.next != null)
-					temp = temp.next;
+				Node temp;
+				for(temp=head; temp.next!=null; temp=temp.next);
 				temp.next = node;
+
 				size++;
 			} else {
 				head = head.next;
-				Node temp = head;
-				while(temp.next != null)
-					temp = temp.next;
+				Node temp;
+				for(temp=head; temp.next!=null; temp=temp.next);
 				temp.next = node;
 			}
 		}
 	}
 
 	public void traverse() {
-		Node temp = head;
-		while(temp != null) {
-			System.out.print(temp.data+"\t");
-			temp = temp.next;
-		}
-		System.out.println();
+		String value = "";
+		for (Node temp=head; temp!=null; temp=temp.next)
+			value += temp.data + "  -->  ";
+		value += "null\n";
+
+		System.out.print(value);
 	}
 }
 
@@ -63,6 +62,7 @@ public class LRUCacheUsingLinkedListTest {
 		lru.set(20);
 		lru.set(30);
 		lru.traverse();
+
 		lru.set(40);
 		lru.set(50);
 		lru.traverse();
