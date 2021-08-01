@@ -8,10 +8,10 @@ public class CreateCurrentTimeStamp {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		Instant instant = timestamp.toInstant();
 
-		System.out.println("Instant - "+instant);
-		System.out.println("To Epoch - "+instant.toEpochMilli());
+		System.out.println("Instant - " + instant);
+		System.out.println("To Epoch - " + instant.toEpochMilli());
 
 		timestamp = Timestamp.from(instant);
-		System.out.println("Get Time from Timestamp - "+timestamp.getTime());
+		System.out.println("Get Time from Timestamp - " + timestamp.getTime());
 	}
 }
