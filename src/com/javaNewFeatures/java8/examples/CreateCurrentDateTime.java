@@ -8,10 +8,10 @@ public class CreateCurrentDateTime {
 	public static void main(String[] args) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
 		LocalDateTime dateTime = LocalDateTime.now();
-		System.out.println("Local Date Time - "+formatter.format(dateTime));
+		System.out.println("Local Date Time - " + formatter.format(dateTime));
 
 		formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 		LocalDate date = LocalDate.now();
-		System.out.println("Local Date - "+formatter.format(date));
+		System.out.println("Local Date - " + formatter.format(date));
 	}
 }
