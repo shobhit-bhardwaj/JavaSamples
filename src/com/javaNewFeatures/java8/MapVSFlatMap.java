@@ -1,6 +1,5 @@
 package com.javaNewFeatures.java8;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -62,9 +61,9 @@ public class MapVSFlatMap {
 		//lists.stream().map(list -> list.stream().map(value -> "flatMap-" + value)).forEach(System.out :: println);
 
 		List<Person> persons = List.of(
-				new Person("Shobhit", Arrays.asList("Bikaner", "Pali")), 
-				new Person("Rohit", Arrays.asList("Jodhpur", "Jaipur")), 
-				new Person("Rajesh", Arrays.asList("Kota", "Ajmer", "Udaipur")));
+				new Person("Shobhit", List.of("Bikaner", "Pali")), 
+				new Person("Rohit", List.of("Jodhpur", "Jaipur")), 
+				new Person("Rajesh", List.of("Kota", "Ajmer", "Udaipur")));
 
 		persons.stream()
 			.map(person -> person.getName())
