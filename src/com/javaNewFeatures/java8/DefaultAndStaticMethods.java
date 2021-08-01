@@ -1,4 +1,4 @@
-package com.java8;
+package com.javaNewFeatures.java8;
 
 interface Cube {
 	public default double area() {
