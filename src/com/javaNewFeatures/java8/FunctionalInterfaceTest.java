@@ -1,7 +1,6 @@
-package com.java8;
+package com.javaNewFeatures.java8;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,7 +12,8 @@ public class FunctionalInterfaceTest {
 		evalInteger(intList, x-> true);
 		evalInteger(intList, x-> x%2==0);
 
-		List<String> stringList = Arrays.asList("A", "B", "C", "D", "E");
+		List<String> stringList = List.of("A", "B", "C", "D", "E");
+
 		evalString(stringList, x -> "A".equals(x));
 		Predicate<String> predicate = (x) -> { String s = x.toLowerCase(); return s.equals("b"); };
 		evalString(stringList, predicate);
