@@ -1,6 +1,5 @@
-package com.java8;
+package com.javaNewFeatures.java8;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.IntSummaryStatistics;
 import java.util.List;
@@ -8,8 +7,8 @@ import java.util.stream.Collectors;
 
 public class Java8Streams {
 	public static void main(String[] args) {
-		final List<String> stringList = Arrays.asList("AAA", "", "BB", "CCCC", "", "DDD", "EEEEE");
-		final List<Integer> integerList = Arrays.asList(1, 2, 3, 2, 4, 3, 5, 6, 7);
+		final List<String> stringList = List.of("AAA", "", "BB", "CCCC", "", "DDD", "EEEEE");
+		final List<Integer> integerList = List.of(1, 2, 3, 2, 4, 3, 5, 6, 7);
 
 		long count = stringList.stream().filter(s -> s.isEmpty()).count();
 		System.out.println("Empty String Count - " + count);
