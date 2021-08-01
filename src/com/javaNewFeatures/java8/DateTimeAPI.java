@@ -1,4 +1,4 @@
-package com.java8;
+package com.javaNewFeatures.java8;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
