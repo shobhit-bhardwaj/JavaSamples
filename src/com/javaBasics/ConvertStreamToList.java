@@ -1,4 +1,4 @@
-package com.javaNewFeatures.java8.examples;
+package com.javaBasics;
 
 import java.util.List;
 import java.util.stream.Collectors;
