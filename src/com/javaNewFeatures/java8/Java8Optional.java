@@ -1,8 +1,8 @@
-package com.javaBasics;
+package com.javaNewFeatures.java8;
 
 import java.util.Optional;
 
-public class OptionalExample {
+public class Java8Optional {
 	public static void main(String[] args) {
 		String s1 = "Hello World";
 		String s2 = null;
