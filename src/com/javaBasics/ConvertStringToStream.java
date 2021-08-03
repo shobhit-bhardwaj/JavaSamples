@@ -1,4 +1,4 @@
-package com.javaNewFeatures.java8.examples;
+package com.javaBasics;
 
 public class ConvertStringToStream {
 	public static void main(String[] args) {
