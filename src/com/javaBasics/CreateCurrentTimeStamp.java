@@ -1,4 +1,4 @@
-package com.javaNewFeatures.java8.examples;
+package com.javaBasics;
 
 import java.sql.Timestamp;
 import java.time.Instant;
