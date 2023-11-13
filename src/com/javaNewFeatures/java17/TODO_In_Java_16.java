@@ -1,4 +1,4 @@
-package com.javaNewFeatures.java16;
+package com.javaNewFeatures.java17;
 
 //	TO-DO
 
@@ -13,5 +13,4 @@ Pattern Matching Type Checks
 */
 
 public class TODO_In_Java_16 {
-	
 }
